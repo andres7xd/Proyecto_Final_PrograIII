@@ -1,0 +1,13 @@
+package org.una.tramites_aeropuerto;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class TramitesAeropuertoApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(TramitesAeropuertoApplication.class, args);
+	}
+
+}
