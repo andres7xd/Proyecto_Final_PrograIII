@@ -61,8 +61,8 @@ public class Usuarios implements Serializable {
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
 //    private List<Usuarios_Areas> usuariosAreas = new ArrayList<>();
 //
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
-//    private List<Marcas_Horarios> marcasHorarios = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
+    private List<Marcas_horario> marcasHorarios = new ArrayList<>();
 //
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
 //    private List<Notificaciones> notificaciones = new ArrayList<>();
@@ -117,6 +117,5 @@ public class Usuarios implements Serializable {
         Fecha_registro = new Date();
 
     }
-
 
 }
