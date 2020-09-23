@@ -21,7 +21,7 @@ public interface INotificacionesService {
 
     public Notificaciones create(Notificaciones notificaciones);
 
-    public Optional<Notificaciones> update(Notificaciones departamento, Long id);
+    public Optional<Notificaciones> update(Notificaciones notificaciones, Long id);
     
     public void delete(Long id);
     
