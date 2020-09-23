@@ -12,6 +12,6 @@ package org.una.tramites_aeropuerto.dto;
 public class RolesDTO {
     
     private Long id;
-    private String Tipo_Rol;
+    private String nombre;
    
 }

@@ -39,16 +39,17 @@ import lombok.ToString;
 
 public class Roles implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roles")
-    private List<Usuarios> usuarios = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rol")
+    private List<Usuarios> usuario = new ArrayList<>();
+
     @Id
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
 
-    @Column(name = "Tipo_Rol", length = 24)
+    @Column(name = "Nombre", length = 24)
 
-    private String Tipo_Rol;
+    private String nombre;
 
 }

@@ -47,6 +47,7 @@ import lombok.ToString;
 
 public class Usuarios implements Serializable {
 
+
     @ManyToOne
     @JoinColumn(name = "Rol_id")
     private Roles rol;
@@ -55,13 +56,13 @@ public class Usuarios implements Serializable {
     @JoinColumn(name = "Empleado_id")
     private Usuarios empleado;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleado")
     private List<Usuarios> empleados = new ArrayList<>();
 //
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
 //    private List<Usuarios_Areas> usuariosAreas = new ArrayList<>();
 //
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Marcas_horario> marcasHorarios = new ArrayList<>();
 //
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
@@ -86,10 +87,10 @@ public class Usuarios implements Serializable {
     @Column(name = "correo", length = 60)
 
     private String correo;
+    
+    @Column(length = 100, name = "contraseña_Encriptada")
 
-    @Column(length = 100, name = "contraseña")
-
-    private String contraseña;
+    private String contraseñaEncriptada;
 
     @Column(length = 25, unique = true)
 
