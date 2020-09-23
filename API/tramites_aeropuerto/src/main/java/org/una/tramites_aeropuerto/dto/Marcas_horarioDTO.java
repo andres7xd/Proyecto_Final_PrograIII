@@ -17,6 +17,7 @@ public class Marcas_horarioDTO {
     private Long id;
     private Date Hora_Entrada;
     private Date Hora_Salida;
+    private Date Horario;
     private Long UsuarioId;
     private Usuarios usuario;
 

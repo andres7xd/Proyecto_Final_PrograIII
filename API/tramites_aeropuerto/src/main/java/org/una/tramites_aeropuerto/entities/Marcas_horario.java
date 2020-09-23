@@ -18,6 +18,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -72,6 +73,23 @@ public class Marcas_horario implements Serializable {
 
     private Date Hora_Salida;
 
+    @Column(name = "Horario", updatable = false)
+
+    @Temporal(TemporalType.DATE)
+
+    @Setter(AccessLevel.NONE)
+
+    private Date Horario;
+    
     private static final long serialVersionUID = 1L;
+     @PrePersist
+
+    public void prePersist() {
+
+        Horario = new Date();
+        Hora_Entrada = new Date();
+        Hora_Salida = new Date();
+
+    }
 
 }
