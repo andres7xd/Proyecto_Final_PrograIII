@@ -5,30 +5,10 @@
  */
 package org.una.tramites_aeropuerto.dto;
 
-import java.util.Date;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
 /**
  *
  * @author andre
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor 
-@ToString
-
 public class NotificacionesDTO {
-    private Long id; 
-    private Date fechaEnvio; 
-    private Date fechaLectura;
-    private String mensaje;
-    private String emisor;
-    private boolean estado;
-//    private Usuarios usuarios;
-    
-    
     
 }
