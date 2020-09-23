@@ -15,20 +15,20 @@ import org.una.tramites_aeropuerto.entities.Notificaciones;
  */
 public interface INotificacionesService {
     
-    public Optional<List<Notificaciones>> findAll();
+        public Optional<List<Notificaciones>> findAll();
 
     public Optional<Notificaciones> findById(Long id);
 
     public Notificaciones create(Notificaciones notificaciones);
 
     public Optional<Notificaciones> update(Notificaciones departamento, Long id);
-
+    
     public void delete(Long id);
-
+    
     public void deleteAll();
     
-    public Optional<List<Notificaciones>> findByEstadoAproximate(boolean estado);
+   public Optional<Notificaciones> findByEmisor(String emisor);
+//    public Optional<List<Notificaciones>> findByEmisorAproximateIgnoreCase(String emisor);
     
-    public Optional<List<Notificaciones>> findByEmisorAproximate(String emisor);
-    
+//    public Optional<List<Notificaciones>> findByemisorAproximate(String emisor);
 }

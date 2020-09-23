@@ -4,11 +4,27 @@
  * and open the template in the editor.
  */
 package org.una.tramites_aeropuerto.dto;
-
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 /**
  *
  * @author andre
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor 
+@ToString
+
 public class NotificacionesDTO {
+    private Long id; 
+    private Date fecha_envio; 
+    private Date fecha_lectura;
+    private String mensaje;
+    private String emisor;
+    private byte estado;
+//  private Usuarios usuarios;
     
 }

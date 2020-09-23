@@ -8,18 +8,20 @@ package org.una.tramites_aeropuerto.services;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.una.tramites_aeropuerto.entities.Notificaciones;
-import org.una.tramites_aeropuerto.repositories.NotificacionesRepository;
+import org.una.tramites_aeropuerto.repositories.INotificacionesRepository;
 
 /**
  *
  * @author andre
  */
+@Service
 public class NotificacionesServiceImplementation implements  INotificacionesService{
     
      @Autowired
-    private NotificacionesRepository notificacionesRepository;
+    private INotificacionesRepository notificacionesRepository;
     
      @Override
     @Transactional
@@ -54,23 +56,26 @@ public class NotificacionesServiceImplementation implements  INotificacionesServ
     @Override
     @Transactional(readOnly = true)
     public Optional<Notificaciones> findById(Long id) {
-        return notificacionesRepository.findById(id);
+      return notificacionesRepository.findById(id);
     }
     
-    @Transactional(readOnly = true)
-    public Optional<List<Notificaciones>> findByEstadoAproximate(boolean estado) {
-        return Optional.ofNullable(notificacionesRepository.findByEstadoContaining(estado));
-    }
+
     
-     @Override
-    @Transactional(readOnly = true)
-    public Optional<List<Notificaciones>> findByEmisorAproximate(String emisor) {
-        return Optional.ofNullable(notificacionesRepository.findByEmisorContaining(emisor));
-    }
+//    @Override
+//    
+//    public Optional<List<Notificaciones>> findByEmisorAproximateIgnoreCase(String emisor) {
+//        return Optional.ofNullable(notificacionesRepository.findByEmisorContainingIgnoreCase(emisor));
+//    }
     
     @Override
     @Transactional(readOnly = true)
     public Optional<List<Notificaciones>> findAll() {
         return Optional.ofNullable(notificacionesRepository.findAll());
+    }
+    
+     @Override
+    @Transactional(readOnly = true)
+    public Optional<Notificaciones> findByEmisor(String emisor) {
+        return Optional.ofNullable(notificacionesRepository.findByEmisor(emisor));
     }
 }
