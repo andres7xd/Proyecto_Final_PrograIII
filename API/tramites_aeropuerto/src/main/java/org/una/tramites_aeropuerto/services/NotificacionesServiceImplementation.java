@@ -23,15 +23,15 @@ public class NotificacionesServiceImplementation implements  INotificacionesServ
     
      @Override
     @Transactional
-    public Notificaciones create(Notificaciones permiso) {
-        return notificacionesRepository.save(permiso);
+    public Notificaciones create(Notificaciones notificaciones) {
+        return notificacionesRepository.save(notificaciones);
     }
 
     @Override
     @Transactional
-    public Optional<Notificaciones> update(Notificaciones permiso, Long id) {
+    public Optional<Notificaciones> update(Notificaciones notificaciones, Long id) {
         if (notificacionesRepository.findById(id).isPresent()) {
-            return Optional.ofNullable(notificacionesRepository.save(permiso));
+            return Optional.ofNullable(notificacionesRepository.save(notificaciones));
         } else {
             return null;
         }
@@ -68,7 +68,7 @@ public class NotificacionesServiceImplementation implements  INotificacionesServ
         return Optional.ofNullable(notificacionesRepository.findByEmisorContaining(emisor));
     }
     
-     @Override
+    @Override
     @Transactional(readOnly = true)
     public Optional<List<Notificaciones>> findAll() {
         return Optional.ofNullable(notificacionesRepository.findAll());
