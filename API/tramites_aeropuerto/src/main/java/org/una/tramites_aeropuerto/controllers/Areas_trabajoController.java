@@ -22,9 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.una.tramites_aeropuerto.dto.Areas_trabajoDto;
-import org.una.tramites_aeropuerto.dto.RolesDTO;
 import org.una.tramites_aeropuerto.entities.Areas_trabajo;
-import org.una.tramites_aeropuerto.entities.Roles;
 import org.una.tramites_aeropuerto.services.IAreas_trabajoService;
 import org.una.tramites_aeropuerto.utils.MapperUtils;
 
@@ -98,6 +96,21 @@ public class Areas_trabajoController {
             Optional<Areas_trabajo> areas_trabajo = areas_trabajoService.findById(id);
             if (areas_trabajo.isPresent()) {
                 Areas_trabajoDto areas_trabajoDto = MapperUtils.DtoFromEntity(areas_trabajo.get(), Areas_trabajoDto.class);
+                return new ResponseEntity<>(areas_trabajoDto, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+     @GetMapping("/nombre/{nombre}")
+    public ResponseEntity<?> findByNombreAproximateIgnoreCase(@PathVariable(value = "nombre") String nombre) {
+        try {
+            Optional<List<Areas_trabajo>> result = areas_trabajoService.findByNombreAproximateIgnoreCase(nombre);
+            if (result.isPresent()) {
+                List<Areas_trabajoDto> areas_trabajoDto = MapperUtils.DtoListFromEntityList(result.get(), Areas_trabajoDto.class);
                 return new ResponseEntity<>(areas_trabajoDto, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

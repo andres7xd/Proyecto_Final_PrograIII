@@ -95,12 +95,10 @@ public class UsuariosController {
 //        }
 //    }
 
-
-
-    @GetMapping("/nombre/{nombre}")
-    public ResponseEntity<?> findByNombreAproximateIgnoreCase(@PathVariable(value = "nombre") String nombre) {
+    @GetMapping("/nombreCompleto/{nombreCompleto}")
+    public ResponseEntity<?> findByNombreCompletoAproximateIgnoreCase(@PathVariable(value = "nombreCompleto") String nombreCompleto) {
         try {
-            Optional<List<Usuarios>> result = usuarioService.findByNombreAproximateIgnoreCase(nombre);
+            Optional<List<Usuarios>> result = usuarioService.findByNombreCompletoAproximateIgnoreCase(nombreCompleto);
             if (result.isPresent()) {
                 List<UsuariosDTO> usuariosDTO = MapperUtils.DtoListFromEntityList(result.get(), UsuariosDTO.class);
                 return new ResponseEntity<>(usuariosDTO, HttpStatus.OK);
@@ -111,20 +109,7 @@ public class UsuariosController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-        @GetMapping("/apellidos/{apellidos}")
-    public ResponseEntity<?> findByApellidosAproximateIgnoreCase(@PathVariable(value = "apellidos") String apellidos) {
-        try {
-            Optional<List<Usuarios>> result = usuarioService.findByApellidosAproximateIgnoreCase(apellidos);
-            if (result.isPresent()) {
-                List<UsuariosDTO> usuariosDTO = MapperUtils.DtoListFromEntityList(result.get(), UsuariosDTO.class);
-                return new ResponseEntity<>(usuariosDTO, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+    
         @GetMapping("/cedula/{cedula}")
     public ResponseEntity<?> findByCedulaAproximateIgnoreCase(@PathVariable(value = "cedula") String cedula) {
         try {
@@ -139,6 +124,7 @@ public class UsuariosController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
         @GetMapping("/correo/{correo}")
     public ResponseEntity<?> findByCorreoAproximateIgnoreCase(@PathVariable(value = "correo") String correo) {
         try {

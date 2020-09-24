@@ -24,12 +24,11 @@ import org.una.tramites_aeropuerto.entities.Usuarios;
 public class UsuariosDTO {
 
     private Long id;
-    private String nombre;
+    private String nombreCompleto;
     private String cedula;
     private String correo;
     private byte estado;
     private Date Fecha_Registro;
-    private String apellidos;
 //    private Long RolesId;
 //    private Long EmpleadoId;
     private Usuarios empleadoid;

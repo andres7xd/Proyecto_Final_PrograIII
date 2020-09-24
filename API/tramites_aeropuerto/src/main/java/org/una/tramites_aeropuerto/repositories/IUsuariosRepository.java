@@ -21,9 +21,7 @@ public interface IUsuariosRepository extends JpaRepository<Usuarios, Long> {
 
     public List<Usuarios> findByCorreoContaining(String correo);
 
-    public List<Usuarios> findByNombreContainingIgnoreCase(String nombre);
-
-    public List<Usuarios> findByApellidosContainingIgnoreCase(String apellidos);
+    public List<Usuarios> findByNombreCompletoContainingIgnoreCase(String nombreCompleto);
 
     public Usuarios findByNombre(String nombre);
 

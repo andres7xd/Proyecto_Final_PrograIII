@@ -76,15 +76,11 @@ public class Usuarios implements Serializable {
 
     private Long id;
 
-    @Column(name = "nombre", length = 45)
+    @Column(name = "NombreCompleto", length = 80)
 
-    private String nombre;
+    private String nombreCompleto;
 
-    @Column(name = "apellidos", length = 45)
-
-    private String apellidos;
-
-    @Column(name = "correo", length = 60)
+    @Column(name = "Correo", length = 60)
 
     private String correo;
     

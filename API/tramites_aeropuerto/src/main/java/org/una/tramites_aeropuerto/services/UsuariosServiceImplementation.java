@@ -46,8 +46,8 @@ public class UsuariosServiceImplementation implements IUsuariosService {
     }
 
     @Override
-    public Optional<List<Usuarios>> findByNombreAproximateIgnoreCase(String nombre) {
-        return Optional.ofNullable(usuariosRepository.findByNombreContainingIgnoreCase(nombre));
+    public Optional<List<Usuarios>> findByNombreCompletoAproximateIgnoreCase(String nombreCompleto) {
+        return Optional.ofNullable(usuariosRepository.findByNombreCompletoContainingIgnoreCase(nombreCompleto));
     }
 
     @Override
@@ -100,11 +100,6 @@ public class UsuariosServiceImplementation implements IUsuariosService {
     @Override
     public Optional<List<Usuarios>> findByCorreoAproximate(String correo) {
         return Optional.ofNullable(usuariosRepository.findByCorreoContaining(correo));
-    }
-
-    @Override
-    public Optional<List<Usuarios>> findByApellidosAproximateIgnoreCase(String apellidos) {
-        return Optional.ofNullable(usuariosRepository.findByNombreContainingIgnoreCase(apellidos));
     }
 
     @Override
