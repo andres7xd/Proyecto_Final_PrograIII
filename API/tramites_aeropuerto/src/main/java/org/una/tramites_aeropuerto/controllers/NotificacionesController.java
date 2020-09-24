@@ -105,13 +105,13 @@ public class NotificacionesController {
     }
     
     
-    @GetMapping("/emisor/{term}") 
-    public ResponseEntity<?> findByEmisor(@PathVariable(value = "emisor")String term) {
+    @GetMapping("/emisor/{emisor}") 
+    public ResponseEntity<?> findByEmisor(@PathVariable(value = "emisor")String emisor) {
         try {
 
-            Optional<Notificaciones> permisoFound = notificacionesService.findByEmisor(term);
-            if (permisoFound.isPresent()) {
-                NotificacionesDTO notificacionesDto = MapperUtils.DtoFromEntity(permisoFound.get(), NotificacionesDTO.class);
+            Optional<Notificaciones> emisorFound = notificacionesService.findByEmisor(emisor);
+            if (emisorFound.isPresent()) {
+                NotificacionesDTO notificacionesDto = MapperUtils.DtoFromEntity(emisorFound.get(), NotificacionesDTO.class);
                 return new ResponseEntity<>(notificacionesDto, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

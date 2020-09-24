@@ -30,8 +30,8 @@ public class UsuariosDTO {
     private byte estado;
     private Date Fecha_Registro;
     private String apellidos;
-    private Long RolesId;
-    private Long EmpleadoId;
-    private Usuarios empleado;
-    private Roles rol;
+//    private Long RolesId;
+//    private Long EmpleadoId;
+    private Usuarios empleadoid;
+    private Roles rolid;
 }

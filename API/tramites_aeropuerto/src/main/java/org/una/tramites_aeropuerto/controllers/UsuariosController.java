@@ -97,7 +97,7 @@ public class UsuariosController {
 
 
 
-    @GetMapping("/nombre")
+    @GetMapping("/nombre/{nombre}")
     public ResponseEntity<?> findByNombreAproximateIgnoreCase(@PathVariable(value = "nombre") String nombre) {
         try {
             Optional<List<Usuarios>> result = usuarioService.findByNombreAproximateIgnoreCase(nombre);
@@ -111,7 +111,7 @@ public class UsuariosController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-        @GetMapping("/apellidos")
+        @GetMapping("/apellidos/{apellidos}")
     public ResponseEntity<?> findByApellidosAproximateIgnoreCase(@PathVariable(value = "apellidos") String apellidos) {
         try {
             Optional<List<Usuarios>> result = usuarioService.findByApellidosAproximateIgnoreCase(apellidos);
@@ -125,7 +125,7 @@ public class UsuariosController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-        @GetMapping("/cedula")
+        @GetMapping("/cedula/{cedula}")
     public ResponseEntity<?> findByCedulaAproximateIgnoreCase(@PathVariable(value = "cedula") String cedula) {
         try {
             Optional<List<Usuarios>> result = usuarioService.findByCedulaAproximate(cedula);
@@ -139,7 +139,7 @@ public class UsuariosController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-        @GetMapping("/correo")
+        @GetMapping("/correo/{correo}")
     public ResponseEntity<?> findByCorreoAproximateIgnoreCase(@PathVariable(value = "correo") String correo) {
         try {
             Optional<List<Usuarios>> result = usuarioService.findByCorreoAproximate(correo);
