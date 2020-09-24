@@ -43,7 +43,7 @@ public class Horarios implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_Usuario_Area")
-    private Usuarios_Areas usuarios_areas;
+    private Usuarios_Areas Usuarios_Areas;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

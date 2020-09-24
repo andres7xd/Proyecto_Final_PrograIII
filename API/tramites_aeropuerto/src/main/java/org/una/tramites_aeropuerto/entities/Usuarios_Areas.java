@@ -46,7 +46,7 @@ public class Usuarios_Areas implements Serializable {
     @JoinColumn(name = "id_Area_trabajo")
     private Areas_trabajo areas_trabajo;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios_areas")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Usuarios_Areas")
     private List<Horarios> horarios = new ArrayList<>();
     
     @Id

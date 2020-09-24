@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.una.tramites_aeropuerto.entities.Areas_trabajo;
+import org.una.tramites_aeropuerto.entities.Usuarios_Areas;
 
 /**
  *
@@ -18,13 +18,12 @@ import org.una.tramites_aeropuerto.entities.Areas_trabajo;
  */
 @Data
 @AllArgsConstructor
-@NoArgsConstructor 
+@NoArgsConstructor
 @ToString
 public class HorariosDTO {
-   
+
     private Long id;
     private Date Dia_Entrada;
     private Date Dia_Salida;
-    Areas_trabajo areas_trabajo;
-//   private Usuarios_Areas usuarios_areas;
+    private Usuarios_Areas usuarios_areas;
 }
