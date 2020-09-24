@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.una.tramites_aeropuerto.dto.Areas_trabajoDto;
 import org.una.tramites_aeropuerto.dto.Usuarios_AreasDto;
 import org.una.tramites_aeropuerto.entities.Usuarios_Areas;
 import org.una.tramites_aeropuerto.services.IUsuarios_AreasService;
@@ -44,7 +43,7 @@ public class Usuarios_AreasController {
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/")
     @ResponseBody
-    @ApiOperation(value = "Creacion de una área de un usuario_area:", response = Areas_trabajoDto.class, tags = "Usuarios_Areas")
+    @ApiOperation(value = "Creacion de una área de un usuario_area:", response = Usuarios_AreasDto.class, tags = "Usuarios_Areas")
     public ResponseEntity<?> create(@RequestBody Usuarios_Areas usuarios_areas) {
         try {
             Usuarios_Areas usuarios_areasCreated = usuarios_areasService.create(usuarios_areas);

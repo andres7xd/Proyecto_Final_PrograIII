@@ -48,7 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         authenticationManagerBuilder.userDetailsService(userService).passwordEncoder(bCrypt);
     }
 
-    @Override
+  @Override
     protected void configure(HttpSecurity http) throws Exception {
         //http.authorizeRequests().anyRequest().authenticated().and().httpBasic();
         http.cors().and().csrf().disable()
@@ -59,9 +59,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated().and()
                 .exceptionHandling().authenticationEntryPoint(entryPoint).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(jwtAuthenticationFilter(),
-                UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
+
 
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter() {
