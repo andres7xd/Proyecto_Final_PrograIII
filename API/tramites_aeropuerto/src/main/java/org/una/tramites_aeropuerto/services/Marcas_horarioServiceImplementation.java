@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.una.tramites_aeropuerto.entities.Marcas_horario;
 import org.una.tramites_aeropuerto.repositories.IMarcas_horarioRepository;
 
@@ -16,6 +17,7 @@ import org.una.tramites_aeropuerto.repositories.IMarcas_horarioRepository;
  *
  * @author rache
  */
+@Service
 public class Marcas_horarioServiceImplementation implements IMarcas_horarioService {
 
     @Autowired
@@ -44,6 +46,15 @@ public class Marcas_horarioServiceImplementation implements IMarcas_horarioServi
     @Override
     public Optional<List<Marcas_horario>> findAll() {
         return Optional.ofNullable(marcas_horarioRepository.findAll());
+    }
+
+    @Override
+    public Optional<Marcas_horario> update(Marcas_horario marcaHorario, Long id) {
+        if (marcas_horarioRepository.findById(id).isPresent()) {
+            return Optional.ofNullable(marcas_horarioRepository.save(marcaHorario));
+        } else {
+            return null;
+        }
     }
 
 }

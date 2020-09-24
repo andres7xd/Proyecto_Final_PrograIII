@@ -20,6 +20,8 @@ public interface IMarcas_horarioService {
 
     public Optional<List<Marcas_horario>> findAll();
 
+    public Optional<Marcas_horario> update(Marcas_horario marcaHorario, Long id);
+
     public Optional<List<Marcas_horario>> findByHorarioBetween(Date startDate, Date endDate);
 
     public Optional<List<Marcas_horario>> findByHora_EntradaBetween(Date startDate, Date endDate);
