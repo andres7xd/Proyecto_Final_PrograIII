@@ -38,9 +38,10 @@ import lombok.ToString;
 
 @ToString
 public class Usuarios_Areas implements Serializable {
-//    @ManyToOne
-//    @JoinColumn(name = "id_Usuario")
-//    private Usuarios usuarios;
+   
+    @ManyToOne
+    @JoinColumn(name = "id_Usuario")
+    private Usuarios usuarios;
     
     @ManyToOne
     @JoinColumn(name = "id_Area_trabajo")

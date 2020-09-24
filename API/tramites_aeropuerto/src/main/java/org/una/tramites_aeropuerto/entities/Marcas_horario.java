@@ -49,7 +49,7 @@ public class Marcas_horario implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "Usuario_id")
-    private Usuarios usuario;
+    private Usuarios usuarios;
 
     @Id
 
