@@ -71,7 +71,7 @@ public class RolesController {
         }
     }
 
-    @GetMapping("/nombre/{term}")
+    @GetMapping("/nombre/{nombre}")
     public ResponseEntity<?> findByNombreAproximateIgnoreCase(@PathVariable(value = "term") String term) {
         try {
             Optional<List<Roles>> result = rolesService.findByNombreAproximateIgnoreCase(term);

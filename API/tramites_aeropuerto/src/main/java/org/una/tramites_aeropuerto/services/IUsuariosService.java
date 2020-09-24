@@ -23,9 +23,7 @@ public interface IUsuariosService {
 
     public Optional<List<Usuarios>> findByCorreoAproximate(String correo);
 
-    public Optional<List<Usuarios>> findByNombreAproximateIgnoreCase(String nombre);
-
-    public Optional<List<Usuarios>> findByApellidosAproximateIgnoreCase(String apellidos);
+    public Optional<List<Usuarios>> findByNombreCompletoAproximateIgnoreCase(String nombreCompleto);
 
     public Usuarios create(Usuarios usuario);
 

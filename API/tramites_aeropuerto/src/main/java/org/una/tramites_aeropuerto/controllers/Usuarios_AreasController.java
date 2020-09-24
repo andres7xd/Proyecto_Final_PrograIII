@@ -23,9 +23,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.una.tramites_aeropuerto.dto.Areas_trabajoDto;
 import org.una.tramites_aeropuerto.dto.Usuarios_AreasDto;
-import org.una.tramites_aeropuerto.entities.Areas_trabajo;
 import org.una.tramites_aeropuerto.entities.Usuarios_Areas;
-import org.una.tramites_aeropuerto.services.IAreas_trabajoService;
 import org.una.tramites_aeropuerto.services.IUsuarios_AreasService;
 import org.una.tramites_aeropuerto.utils.MapperUtils;
 
