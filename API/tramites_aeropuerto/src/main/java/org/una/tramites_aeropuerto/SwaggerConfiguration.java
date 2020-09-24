@@ -39,7 +39,7 @@ public class SwaggerConfiguration {
                 .apis(
                         RequestHandlerSelectors
                                 .basePackage("org.una.tramites_aeropuerto.controllers"))
-                .paths(PathSelectors.regex("/.*"))
+                .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo())
                 .tags(new Tag("Usuarios", "Entidad de Usuarios"),
