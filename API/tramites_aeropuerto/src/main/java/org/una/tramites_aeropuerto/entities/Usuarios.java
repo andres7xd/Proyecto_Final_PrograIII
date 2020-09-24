@@ -47,7 +47,6 @@ import lombok.ToString;
 
 public class Usuarios implements Serializable {
 
-
     @ManyToOne
     @JoinColumn(name = "Rol_id")
     private Roles rol;
@@ -58,18 +57,16 @@ public class Usuarios implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleado")
     private List<Usuarios> empleados = new ArrayList<>();
-//
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
-//    private List<Usuarios_Areas> usuariosAreas = new ArrayList<>();
-//
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
+    private List<Usuarios_Areas> Usuarios_Areas = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
     private List<Marcas_horario> marcasHorarios = new ArrayList<>();
-//
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
-//    private List<Notificaciones> notificaciones = new ArrayList<>();
-//
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
-//    private List<Horarios> horarios = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
+    private List<Notificaciones> notificaciones = new ArrayList<>();
+
     @Id
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
