@@ -15,7 +15,7 @@ import org.una.tramites_aeropuerto.entities.Usuarios;
  */
 public interface IUsuariosRepository extends JpaRepository<Usuarios, Long> {
 
-    public Usuarios findByCedulaAndContraseñaEncriptada(String cedula, String contraseñaEncriptada);
+    public Usuarios findByCedulaAndContrasenaEncriptada(String cedula, String contrasenaEncriptada);
 
     public List<Usuarios> findByCedulaContaining(String cedula);
 

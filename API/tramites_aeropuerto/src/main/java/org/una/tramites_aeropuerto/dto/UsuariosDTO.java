@@ -29,8 +29,6 @@ public class UsuariosDTO {
     private String correo;
     private byte estado;
     private Date Fecha_Registro;
-//    private Long RolesId;
-//    private Long EmpleadoId;
     private Usuarios empleadoid;
     private Roles rolid;
 }

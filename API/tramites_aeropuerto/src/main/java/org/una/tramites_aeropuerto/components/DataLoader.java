@@ -5,7 +5,6 @@
  */
 package org.una.tramites_aeropuerto.components;
 
-import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,17 +26,15 @@ public class DataLoader implements ApplicationRunner {
     @Value("${app.admin-user}")
     private String cedula;
 
-    @Value("${app.contraseña}")
-    private String contraseña;
+    @Value("${app.contrasena}")
+    private String contrasena;
 
     @Autowired
     private IUsuariosService usuarioService;
 
     @Autowired
     private IRolesService rolService;
-//
-//    @Autowired
-//    private IPermisoOtorgadoService permisoOtorgadoService;
+
 
     @Override
     public void run(ApplicationArguments args) {
@@ -59,8 +56,11 @@ public class DataLoader implements ApplicationRunner {
             
             Usuarios usuario = new Usuarios();
             usuario.setNombreCompleto("Usuario ADMIN");
+            usuario.setCorreo("@@@@");
             usuario.setCedula(cedula);
-            usuario.setContraseñaEncriptada(contraseña);
+            usuario.setId(Long.MIN_VALUE);
+            usuario.setEmpleado(usuario);
+            usuario.setContrasenaEncriptada(contrasena);
             usuario.setRol(rol);
             usuario = usuarioService.create(usuario);
 

@@ -84,9 +84,9 @@ public class Usuarios implements Serializable {
 
     private String correo;
     
-    @Column(length = 100, name = "contraseña_Encriptada")
+    @Column(length = 100, name = "contrasena_Encriptada")
 
-    private String contraseñaEncriptada;
+    private String contrasenaEncriptada;
 
     @Column(length = 25, unique = true)
 

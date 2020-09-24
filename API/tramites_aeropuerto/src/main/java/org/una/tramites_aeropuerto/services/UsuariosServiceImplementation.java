@@ -5,12 +5,27 @@
  */
 package org.una.tramites_aeropuerto.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.una.tramites_aeropuerto.dto.AuthenticationRequest;
+
 import org.una.tramites_aeropuerto.entities.Usuarios;
+import org.una.tramites_aeropuerto.jwt.JwtProvider;
 import org.una.tramites_aeropuerto.repositories.IUsuariosRepository;
 
 /**
@@ -18,15 +33,15 @@ import org.una.tramites_aeropuerto.repositories.IUsuariosRepository;
  * @author rache
  */
 @Service
-public class UsuariosServiceImplementation implements IUsuariosService {
+public class UsuariosServiceImplementation implements IUsuariosService,UserDetailsService {
 
-//    @Autowired
-//    private AuthenticationManager authenticationManager;
-//    
-//    @Autowired
-//    private JwtProvider jwtProvider;
-//    @Autowired
-//    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtProvider jwtProvider;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     private IUsuariosRepository usuariosRepository;
 
@@ -53,7 +68,7 @@ public class UsuariosServiceImplementation implements IUsuariosService {
     @Override
     @Transactional
     public Usuarios create(Usuarios usuario) {
-//        encriptarPassword(usuario);
+        encriptarContrasena(usuario);
         return usuariosRepository.save(usuario);
     }
 
@@ -81,7 +96,6 @@ public class UsuariosServiceImplementation implements IUsuariosService {
         usuariosRepository.deleteAll();
     }
 
-
     @Override
     public Optional<List<Usuarios>> findByRolId(Long id) {
         return Optional.ofNullable(usuariosRepository.findByRolId(id));
@@ -103,38 +117,38 @@ public class UsuariosServiceImplementation implements IUsuariosService {
         return Optional.ofNullable(usuariosRepository.findByEmpleadoId(id));
     }
 
+    private void encriptarContrasena(Usuarios usuario) {
+        String password = usuario.getContrasenaEncriptada();
+        if (!password.isBlank()) {
+            usuario.setContrasenaEncriptada(bCryptPasswordEncoder.encode(password));
+        }
+    }
     @Override
-    public Optional<Usuarios> login(Usuarios usuario) {
-        return Optional.ofNullable(usuariosRepository.findByCedulaAndContraseñaEncriptada(usuario.getCedula(), usuario.getContraseñaEncriptada()));
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<Usuarios> usuarioBuscado = findByCedula(username);
+        if (usuarioBuscado.isPresent()) {
+            Usuarios usuario = usuarioBuscado.get();
+            List<GrantedAuthority> roles = new ArrayList<>();
+            roles.add(new SimpleGrantedAuthority("ADMIN"));
+            UserDetails userDetails = new User(usuario.getCedula(),
+                    usuario.getContrasenaEncriptada(), roles);
+            return userDetails;
+        } else {
+            return null;
+        }
     }
 
-//    private void encriptarPassword(Usuario usuario) {
-//        String password = usuario.getPasswordEncriptado();
-//        if (!password.isBlank()) {
-//            usuario.setPasswordEncriptado(bCryptPasswordEncoder.encode(password));
-//        }
-//    }
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        Optional<Usuario> usuarioBuscado = findByCedula(username);
-//        if (usuarioBuscado.isPresent()) {
-//            Usuario usuario = usuarioBuscado.get();
-//            List<GrantedAuthority> roles = new ArrayList<>();
-//            roles.add(new SimpleGrantedAuthority("ADMIN"));
-//            UserDetails userDetails = new User(usuario.getCedula(),
-//                    usuario.getPasswordEncriptado(), roles);
-//            return userDetails;
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    @Override
-//    public String login(AuthenticationRequest authenticationRequest) {
-//
-//        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getCedula(), authenticationRequest.getPassword()));
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//        return jwtProvider.generateToken(authenticationRequest);
-//
-//    }
+    @Override
+    public String login(AuthenticationRequest authenticationRequest) {
+
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getCedula(), authenticationRequest.getContrasena()));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        return jwtProvider.generateToken(authenticationRequest);
+
+    }
+
+    @Override
+    public Optional<Usuarios> login(Usuarios usuario) {
+        return Optional.ofNullable(usuariosRepository.findByCedulaAndContrasenaEncriptada(usuario.getCedula(), usuario.getContrasenaEncriptada()));
+    }
 }

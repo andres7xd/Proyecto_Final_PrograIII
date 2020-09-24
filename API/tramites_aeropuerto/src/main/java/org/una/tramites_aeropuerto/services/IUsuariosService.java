@@ -26,7 +26,7 @@ public interface IUsuariosService {
 
     public Optional<List<Usuarios>> findByNombreCompletoAproximateIgnoreCase(String nombreCompleto);
 
-    //public String login(AuthenticationRequest authenticationRequest);
+    public String login(AuthenticationRequest authenticationRequest);
 
     public Usuarios create(Usuarios usuario);
 
