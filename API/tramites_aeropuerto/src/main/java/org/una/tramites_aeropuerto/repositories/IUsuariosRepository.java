@@ -23,12 +23,9 @@ public interface IUsuariosRepository extends JpaRepository<Usuarios, Long> {
 
     public List<Usuarios> findByNombreCompletoContainingIgnoreCase(String nombreCompleto);
 
-    public Usuarios findByNombre(String nombre);
-
     public List<Usuarios> findByRolId(Long id);
 
     public List<Usuarios> findByEmpleadoId(Long id);
-
 
     public Usuarios findByCedula(String cedula);
 //

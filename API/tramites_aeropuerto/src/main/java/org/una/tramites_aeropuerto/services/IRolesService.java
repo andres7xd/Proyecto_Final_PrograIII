@@ -19,7 +19,7 @@ public interface IRolesService {
 
     public Optional<Roles> findById(Long id);
 
-    public Optional<List<Roles>> findByNombreAproximateIgnoreCase(String nombre);
+    public Optional<Roles> findByNombreAproximateIgnoreCase(String nombre);
 
     public Roles create(Roles rol);
 

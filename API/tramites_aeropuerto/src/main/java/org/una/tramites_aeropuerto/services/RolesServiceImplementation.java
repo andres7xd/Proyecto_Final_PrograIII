@@ -52,7 +52,7 @@ public class RolesServiceImplementation implements IRolesService {
         return rolesRepository.findById(id);
     }
  @Override
-    public Optional<List<Roles>> findByNombreAproximateIgnoreCase(String nombre) {
+    public Optional<Roles>findByNombreAproximateIgnoreCase(String nombre) {
         return Optional.ofNullable(rolesRepository.findByNombreContainingIgnoreCase(nombre));
     }
 

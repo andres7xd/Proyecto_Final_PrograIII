@@ -72,11 +72,12 @@ public class RolesController {
     }
 
     @GetMapping("/nombre/{nombre}")
-    public ResponseEntity<?> findByNombreAproximateIgnoreCase(@PathVariable(value = "term") String term) {
+    public ResponseEntity<?> findByNombre(@PathVariable(value = "nombre") String nombre) {
         try {
-            Optional<List<Roles>> result = rolesService.findByNombreAproximateIgnoreCase(term);
-            if (result.isPresent()) {
-                List<RolesDTO> rolesDTO = MapperUtils.DtoListFromEntityList(result.get(), RolesDTO.class);
+
+            Optional<Roles> rol = rolesService.findByNombreAproximateIgnoreCase(nombre);
+            if (rol.isPresent()) {
+                RolesDTO rolesDTO = MapperUtils.DtoFromEntity(rol.get(), RolesDTO.class);
                 return new ResponseEntity<>(rolesDTO, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

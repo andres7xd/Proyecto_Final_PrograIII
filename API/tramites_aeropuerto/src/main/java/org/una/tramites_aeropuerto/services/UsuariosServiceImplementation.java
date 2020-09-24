@@ -81,10 +81,6 @@ public class UsuariosServiceImplementation implements IUsuariosService {
         usuariosRepository.deleteAll();
     }
 
-    @Transactional()
-    public Usuarios findByNombreCompleto(String nombre) {
-        return usuariosRepository.findByNombre(nombre);
-    }
 
     @Override
     public Optional<List<Usuarios>> findByRolId(Long id) {
