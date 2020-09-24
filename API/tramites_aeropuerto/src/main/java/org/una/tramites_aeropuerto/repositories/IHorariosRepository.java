@@ -23,8 +23,6 @@ public interface IHorariosRepository extends JpaRepository<Horarios, Long>{
     
     @Query("SELECT u FROM Horarios u   WHERE  u.Dia_Salida BETWEEN starDate AND endDate")
     public List<Horarios> findByDiaSalidaBetween(@Param("starDate") Date startDate, @Param("endDate") Date endDate);
-    
-    @Query("SELECT u FROM Horarios u WHERE u.usuarios_areas = id_Usuario_Area")
-    public List<Horarios> findByUsuarioAreaId(@Param("id_Usuario_Area") Long id_Usuario_Area);
+
     
 }

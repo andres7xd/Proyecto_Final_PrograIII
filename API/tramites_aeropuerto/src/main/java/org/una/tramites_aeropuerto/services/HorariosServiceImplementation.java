@@ -64,12 +64,12 @@ public class HorariosServiceImplementation implements IHorariosService {
     public void deleteAll() {
         horariosRepository.deleteAll();
     }
-    
-    @Override
-    @Transactional(readOnly = true)
-    public Optional<List<Horarios>> findByUsuarioAreaId(Long id_Usuario_Area){
-        return Optional.ofNullable(horariosRepository.findByUsuarioAreaId(id_Usuario_Area));
-    }
+//    
+//    @Override
+//    @Transactional(readOnly = true)
+//    public Optional<List<Horarios>> findByUsuarioAreaId(Long id_Usuario_Area){
+//        return Optional.ofNullable(horariosRepository.findByUsuarioAreaId(id_Usuario_Area));
+//    }
     
 //    @Override
 //    @Transactional(readOnly = true)
