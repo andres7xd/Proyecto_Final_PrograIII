@@ -44,9 +44,10 @@ public class SwaggerConfiguration {
                 .apiInfo(apiInfo())
                 .tags(new Tag("Usuarios", "Entidad de Usuarios"),
                         new Tag("Marcas_horario", "Entidad Marcas_horario"),
-                        new Tag("Roles", "Entidad Roles")
+                        new Tag("Roles", "Entidad Roles"),
+                        new Tag("Notificaciones", "Entidad Notificaciones"),
+                        new Tag("Imagenes", "Entidad Imagenes")
                 );
-
     }
 
     private ApiInfo apiInfo() {
@@ -60,4 +61,5 @@ public class SwaggerConfiguration {
                 "Apache-2.0", "http://www.apache.org/licenses/LICENSE-2.0", Collections.emptyList()
         );
     }
+    
 }

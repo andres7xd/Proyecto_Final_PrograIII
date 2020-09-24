@@ -73,7 +73,7 @@ public class NotificacionesServiceImplementation implements  INotificacionesServ
         return Optional.ofNullable(notificacionesRepository.findAll());
     }
     
-     @Override
+    @Override
     @Transactional(readOnly = true)
     public Optional<Notificaciones> findByEmisor(String emisor) {
         return Optional.ofNullable(notificacionesRepository.findByEmisor(emisor));
