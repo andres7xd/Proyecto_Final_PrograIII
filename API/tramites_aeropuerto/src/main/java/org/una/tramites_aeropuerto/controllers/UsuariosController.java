@@ -97,8 +97,8 @@ public class UsuariosController {
 
 
 
-    @GetMapping("/nombre/{term}")
-    public ResponseEntity<?> findByNombreAproximateIgnoreCase(@PathVariable(value = "term") String term) {
+    @GetMapping("/nombre")
+    public ResponseEntity<?> findByNombreAproximateIgnoreCase(@PathVariable(value = "nombre") String nombre) {
         try {
             Optional<List<Usuarios>> result = usuarioService.findByNombreAproximateIgnoreCase(term);
             if (result.isPresent()) {
@@ -111,8 +111,8 @@ public class UsuariosController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-        @GetMapping("/apellidos/{term}")
-    public ResponseEntity<?> findByApellidosAproximateIgnoreCase(@PathVariable(value = "term") String term) {
+        @GetMapping("/apellidos")
+    public ResponseEntity<?> findByApellidosAproximateIgnoreCase(@PathVariable(value = "apellidos") String apellidos) {
         try {
             Optional<List<Usuarios>> result = usuarioService.findByApellidosAproximateIgnoreCase(term);
             if (result.isPresent()) {
@@ -125,8 +125,8 @@ public class UsuariosController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-        @GetMapping("/cedula/{term}")
-    public ResponseEntity<?> findByCedulaAproximateIgnoreCase(@PathVariable(value = "term") String term) {
+        @GetMapping("/cedula")
+    public ResponseEntity<?> findByCedulaAproximateIgnoreCase(@PathVariable(value = "cedula") String cedula) {
         try {
             Optional<List<Usuarios>> result = usuarioService.findByCedulaAproximate(term);
             if (result.isPresent()) {
@@ -139,8 +139,8 @@ public class UsuariosController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-        @GetMapping("/correo/{term}")
-    public ResponseEntity<?> findByCorreoAproximateIgnoreCase(@PathVariable(value = "term") String term) {
+        @GetMapping("/correo")
+    public ResponseEntity<?> findByCorreoAproximateIgnoreCase(@PathVariable(value = "correo") String correo) {
         try {
             Optional<List<Usuarios>> result = usuarioService.findByCorreoAproximate(term);
             if (result.isPresent()) {
