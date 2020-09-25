@@ -8,6 +8,7 @@ package org.una.tramites_aeropuerto.services;
 import java.util.List;
 import java.util.Optional;
 import org.una.tramites_aeropuerto.dto.AuthenticationRequest;
+import org.una.tramites_aeropuerto.dto.AuthenticationResponse;
 import org.una.tramites_aeropuerto.entities.Usuarios;
 
 /**
@@ -26,7 +27,7 @@ public interface IUsuariosService {
 
     public Optional<List<Usuarios>> findByNombreCompletoAproximateIgnoreCase(String nombreCompleto);
 
-    public String login(AuthenticationRequest authenticationRequest);
+    public AuthenticationResponse  login(AuthenticationRequest authenticationRequest);
 
     public Usuarios create(Usuarios usuario);
 

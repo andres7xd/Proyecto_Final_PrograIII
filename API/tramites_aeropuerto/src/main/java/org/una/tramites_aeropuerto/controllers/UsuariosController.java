@@ -85,9 +85,11 @@ public class UsuariosController {
         }
         try {
             AuthenticationResponse authenticationResponse = new AuthenticationResponse();
-            String token = usuarioService.login(authenticationRequest);
-            if (!token.isBlank()) {
-                authenticationResponse.setJwt(token);
+            AuthenticationResponse token = usuarioService.login(authenticationRequest);
+
+            String stringtoken = String.valueOf(token);
+            if (!stringtoken.isBlank()) {
+                authenticationResponse.setJwt(stringtoken);
                 //TODO: Complete this   authenticationResponse.setUsuario(usuario);
                 // TODO: Complete this    authenticationResponse.setPermisos(permisosOtorgados);
                 return new ResponseEntity(authenticationResponse, HttpStatus.OK);
@@ -113,8 +115,8 @@ public class UsuariosController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
-        @GetMapping("/cedula/{cedula}")
+
+    @GetMapping("/cedula/{cedula}")
     public ResponseEntity<?> findByCedulaAproximateIgnoreCase(@PathVariable(value = "cedula") String cedula) {
         try {
             Optional<List<Usuarios>> result = usuarioService.findByCedulaAproximate(cedula);
@@ -128,8 +130,8 @@ public class UsuariosController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
-        @GetMapping("/correo/{correo}")
+
+    @GetMapping("/correo/{correo}")
     public ResponseEntity<?> findByCorreoAproximateIgnoreCase(@PathVariable(value = "correo") String correo) {
         try {
             Optional<List<Usuarios>> result = usuarioService.findByCorreoAproximate(correo);
@@ -176,6 +178,5 @@ public class UsuariosController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 
 }

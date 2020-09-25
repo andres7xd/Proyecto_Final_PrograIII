@@ -23,10 +23,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.una.tramites_aeropuerto.dto.AuthenticationRequest;
+import org.una.tramites_aeropuerto.dto.AuthenticationResponse;
+import org.una.tramites_aeropuerto.dto.RolesDTO;
+import org.una.tramites_aeropuerto.dto.UsuariosDTO;
 
 import org.una.tramites_aeropuerto.entities.Usuarios;
 import org.una.tramites_aeropuerto.jwt.JwtProvider;
 import org.una.tramites_aeropuerto.repositories.IUsuariosRepository;
+import org.una.tramites_aeropuerto.utils.MapperUtils;
 
 /**
  *
@@ -139,13 +143,31 @@ public class UsuariosServiceImplementation implements IUsuariosService,UserDetai
     }
 
     @Override
-    public String login(AuthenticationRequest authenticationRequest) {
+    @Transactional
+    public AuthenticationResponse login(AuthenticationRequest authenticationRequest) {
 
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getCedula(), authenticationRequest.getContrasena()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return jwtProvider.generateToken(authenticationRequest);
+        AuthenticationResponse authenticationResponse = new AuthenticationResponse();
+
+        Optional<Usuarios> usuario = findByCedula(authenticationRequest.getCedula());
+
+        if (usuario.isPresent()) {
+            authenticationResponse.setJwt(jwtProvider.generateToken(authenticationRequest));
+           
+            UsuariosDTO usuarioDto = MapperUtils.DtoFromEntity(usuario.get(), UsuariosDTO.class);
+            authenticationResponse.setUsuario(usuarioDto);
+            
+            RolesDTO rolesDto = MapperUtils.DtoFromEntity(usuario.get(), RolesDTO.class);
+            authenticationResponse.setRoles(rolesDto);
+
+            return authenticationResponse;
+        } else {
+            return null;
+        }
 
     }
+
 
     @Override
     public Optional<Usuarios> login(Usuarios usuario) {
