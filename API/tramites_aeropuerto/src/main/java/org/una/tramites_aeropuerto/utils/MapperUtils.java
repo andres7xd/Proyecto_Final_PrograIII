@@ -19,11 +19,12 @@ import org.modelmapper.ModelMapper;
 
 /**
  *
- *@author rache
+ * @author rache
  */
 public class MapperUtils {
 
-    private static ModelMapper modelMapper = new ModelMapper() {};
+    private static ModelMapper modelMapper = new ModelMapper() {
+    };
 
     static {
         modelMapper = new ModelMapper();
