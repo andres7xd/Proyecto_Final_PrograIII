@@ -13,6 +13,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 import org.una.tramites_aeropuerto.entities.Roles;
 import org.una.tramites_aeropuerto.entities.Usuarios;
+import org.una.tramites_aeropuerto.loaders.Permisos;
 import org.una.tramites_aeropuerto.services.IRolesService;
 import org.una.tramites_aeropuerto.services.IUsuariosService;
 
@@ -35,17 +36,16 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     private IRolesService rolService;
 
-
     @Override
     public void run(ApplicationArguments args) {
 
         if (usuarioService.findByCedula(cedula).isEmpty()) {
 
             Roles rol;
-            final String TipoRol = "Administrador"; 
+            final String TipoRol = "Administrador";
             Optional<Roles> rolBuscado = rolService.findByNombreAproximateIgnoreCase(TipoRol);
 
-            if (rolBuscado.isEmpty()) { 
+            if (rolBuscado.isEmpty()) {
                 rol = new Roles();
                 rol.setNombre(TipoRol);
                 rol = rolService.create(rol);
@@ -53,7 +53,7 @@ public class DataLoader implements ApplicationRunner {
             } else {
                 rol = rolBuscado.get();
             }
-            
+
             Usuarios usuario = new Usuarios();
             usuario.setNombreCompleto("Usuario ADMIN");
             usuario.setCorreo("@@@@");
@@ -69,5 +69,13 @@ public class DataLoader implements ApplicationRunner {
             System.out.println("Se encontro el Usuario");
         }
 
+    }
+
+    private void createPermisos() {
+        for (Permisos permiso : Permisos.values()) {
+            Roles nuevorol = new Roles();
+            nuevorol.setNombre(nuevorol.getNombre());
+            nuevorol = rolService.create(nuevorol);
+        }
     }
 }
