@@ -23,20 +23,17 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.una.tramites_aeropuerto.dto.AuthenticationRequest;
-import org.una.tramites_aeropuerto.dto.AuthenticationResponse;
-import org.una.tramites_aeropuerto.dto.UsuariosDTO;
 
 import org.una.tramites_aeropuerto.entities.Usuarios;
 import org.una.tramites_aeropuerto.jwt.JwtProvider;
 import org.una.tramites_aeropuerto.repositories.IUsuariosRepository;
-import org.una.tramites_aeropuerto.utils.MapperUtils;
 
 /**
  *
  * @author rache
  */
 @Service
-public class UsuariosServiceImplementation implements IUsuariosService, UserDetailsService {
+public class UsuariosServiceImplementation implements IUsuariosService,UserDetailsService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -126,7 +123,6 @@ public class UsuariosServiceImplementation implements IUsuariosService, UserDeta
             usuario.setContrasenaEncriptada(bCryptPasswordEncoder.encode(password));
         }
     }
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Usuarios> usuarioBuscado = findByCedula(username);
@@ -142,32 +138,12 @@ public class UsuariosServiceImplementation implements IUsuariosService, UserDeta
         }
     }
 
-//    @Override
-//    public String login(AuthenticationRequest authenticationRequest) {
-//
-//        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getCedula(), authenticationRequest.getContrasena()));
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//        return jwtProvider.generateToken(authenticationRequest);
-//
-//    }
     @Override
-    @Transactional
-    public AuthenticationResponse login(AuthenticationRequest authenticationRequest) {
+    public String login(AuthenticationRequest authenticationRequest) {
 
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getCedula(), authenticationRequest.getContrasena()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        AuthenticationResponse authenticationResponse = new AuthenticationResponse();
-
-        Optional<Usuarios> usuario = findByCedula(authenticationRequest.getCedula());
-
-        if (usuario.isPresent()) {
-            authenticationResponse.setJwt(jwtProvider.generateToken(authenticationRequest));
-            UsuariosDTO usuarioDto = MapperUtils.DtoFromEntity(usuario.get(), UsuariosDTO.class);
-            authenticationResponse.setUsuario(usuarioDto);
-            return authenticationResponse;
-        } else {
-            return null;
-        }
+        return jwtProvider.generateToken(authenticationRequest);
 
     }
 
