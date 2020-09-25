@@ -164,7 +164,6 @@ public class UsuariosServiceImplementation implements IUsuariosService, UserDeta
             authenticationResponse.setJwt(jwtProvider.generateToken(authenticationRequest));
             UsuariosDTO usuarioDto = MapperUtils.DtoFromEntity(usuario.get(), UsuariosDTO.class);
             authenticationResponse.setUsuario(usuarioDto);
-            
             return authenticationResponse;
         } else {
             return null;
