@@ -33,7 +33,7 @@ public interface IUsuariosService {
 
     public Optional<Usuarios> update(Usuarios usuario, Long id);
 
-    public Optional<List<Usuarios>> findByRolId(Long id);
+    public Optional<List<Usuarios>> findByRolesId(Long id);
 
     public Optional<List<Usuarios>> findByEmpleadoId(Long id);
 

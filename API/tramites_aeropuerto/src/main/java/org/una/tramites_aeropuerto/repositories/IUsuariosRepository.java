@@ -23,13 +23,11 @@ public interface IUsuariosRepository extends JpaRepository<Usuarios, Long> {
 
     public List<Usuarios> findByNombreCompletoContainingIgnoreCase(String nombreCompleto);
 
-    public List<Usuarios> findByRolId(Long id);
+    public List<Usuarios> findByRolesId(Long id);
 
     public List<Usuarios> findByEmpleadoId(Long id);
 
     public Usuarios findByCedula(String cedula);
-//
-//    @Query("select u from Usuario u where UPPER(u.nombreCompleto) like CONCAT('%', UPPER(:nombreCompleto), '%')")
-//    public Usuarios findNombreCompletoWithLikeSQL(@Param("nombreCompleto") String nombreCompleto);
+
 
 }

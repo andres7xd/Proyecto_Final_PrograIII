@@ -61,7 +61,7 @@ public class DataLoader implements ApplicationRunner {
             usuario.setId(Long.MIN_VALUE);
             usuario.setEmpleado(usuario);
             usuario.setContrasenaEncriptada(contrasena);
-            usuario.setRol(rol);
+            usuario.setRoles(rol);
             usuario = usuarioService.create(usuario);
 
             System.out.println("Se agrega el usuario inicial");

@@ -49,7 +49,7 @@ public class Usuarios implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "Rol_id")
-    private Roles rol;
+    private Roles roles;
 
     @ManyToOne
     @JoinColumn(name = "Empleado_id")

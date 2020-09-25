@@ -5,10 +5,19 @@
  */
 package org.una.tramites_aeropuerto.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 /**
  *
  * @author rache
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor 
+@ToString
 public class RolesDTO {
     
     private Long id;

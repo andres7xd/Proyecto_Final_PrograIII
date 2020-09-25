@@ -101,8 +101,8 @@ public class UsuariosServiceImplementation implements IUsuariosService,UserDetai
     }
 
     @Override
-    public Optional<List<Usuarios>> findByRolId(Long id) {
-        return Optional.ofNullable(usuariosRepository.findByRolId(id));
+    public Optional<List<Usuarios>> findByRolesId(Long id) {
+        return Optional.ofNullable(usuariosRepository.findByRolesId(id));
     }
 
     @Override

@@ -39,7 +39,7 @@ import lombok.ToString;
 
 public class Roles implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rol")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roles")
     private List<Usuarios> usuario = new ArrayList<>();
 
     @Id
