@@ -16,15 +16,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 
-
 /**
  *
  * @author rache
  */
 public class MapperUtils {
 
-    private static ModelMapper modelMapper = new ModelMapper() {
-    };
+    private static ModelMapper modelMapper = new ModelMapper();
 
     static {
         modelMapper = new ModelMapper();
@@ -38,10 +36,15 @@ public class MapperUtils {
         return modelMapper.map(entity, dtoClass);
     }
 
-    public static <D, E> List<D> DtoListFromEntityList(final Collection<E> entityList, Class<D> dtoClass) {
-        return entityList.stream()
-                .map(entity -> DtoFromEntity(entity, dtoClass))
-                .collect(Collectors.toList());
+    public static <D, E> E EntityFromDto(final D dto, Class<E> entityClass) {
+        return modelMapper.map(dto, entityClass);
     }
 
+    public static <D, E> List<D> DtoListFromEntityList(final Collection<E> entityList, Class<D> dtoClass) {
+        return entityList.stream().map(entity -> DtoFromEntity(entity, dtoClass)).collect(Collectors.toList());
+    }
+
+    public static <D, E> List<E> EntityListFromDtoList(final Collection<D> dtoList, Class<E> entityClass) {
+        return dtoList.stream().map(dto -> EntityFromDto(dto, entityClass)).collect(Collectors.toList());
+    }
 }
