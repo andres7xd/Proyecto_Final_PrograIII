@@ -17,12 +17,14 @@ import org.una.tramites_aeropuerto.entities.Notificaciones;
  */
 @Data
 @AllArgsConstructor
-@NoArgsConstructor 
+@NoArgsConstructor
 @ToString
 public class ImagenesDTO {
- 
+
     private Long id;
-    private String Imagen_Adjunta;
+    private String parte;
+    private int orden;
+    private int total_partes;
     private Notificaciones notificaciones;
-          
+
 }

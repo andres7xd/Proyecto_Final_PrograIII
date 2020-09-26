@@ -18,6 +18,5 @@ import org.una.tramites_aeropuerto.entities.Imagenes;
  */
 public interface ImagenesRepository extends JpaRepository<Imagenes, Long> {
 
-//    @Query("SELECT u FROM Imagenes u WHERE u.Notificaciones = notificaciones_id")
     public List<Imagenes> findByNotificacionesId(Long id);
 }

@@ -34,16 +34,22 @@ import lombok.ToString;
 
 @ToString
 public class Imagenes implements Serializable {
-    
+
     @ManyToOne
     @JoinColumn(name = "notificaiones_id")
     private Notificaciones notificaciones;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(name = "Imagen_Adjunta", length = 40000)
-    private String Imagen_Adjunta;
-    
+
+    @Column(name = "parte", length = 10000)
+    private String parte;
+
+    @Column(name = "orden")
+    private int orden;
+
+    @Column(name = "total_partes")
+    private int total_partes;
+// Consultar tipo
 }

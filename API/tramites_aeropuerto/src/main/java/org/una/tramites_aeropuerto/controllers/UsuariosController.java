@@ -90,8 +90,6 @@ public class UsuariosController {
             String stringtoken = String.valueOf(token);
             if (!stringtoken.isBlank()) {
                 authenticationResponse.setJwt(stringtoken);
-                //TODO: Complete this   authenticationResponse.setUsuario(usuario);
-                // TODO: Complete this    authenticationResponse.setPermisos(permisosOtorgados);
                 return new ResponseEntity(authenticationResponse, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("Credenciales invalidos", HttpStatus.UNAUTHORIZED);

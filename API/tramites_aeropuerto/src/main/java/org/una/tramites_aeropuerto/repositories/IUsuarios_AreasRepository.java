@@ -16,9 +16,6 @@ import org.una.tramites_aeropuerto.entities.Usuarios_Areas;
  * @author Luis
  */
 public interface IUsuarios_AreasRepository extends JpaRepository<Usuarios_Areas, Long> {
-//    
-//    @Query("SELECT u FROM Usuarios_Areas u WHERE u.usuarios = id_Usuario")
-//    public List<Usuarios_Areas> findByUsuarioId(@Param("id_Usuario") Long id_Usuario);
 
     @Query("SELECT u FROM Usuarios_Areas u WHERE u.areas_trabajo = id_Area_trabajo")
     public List<Usuarios_Areas> findByAreaTrabajoId(@Param("id_Area_trabajo") Long id_Area_trabajo);

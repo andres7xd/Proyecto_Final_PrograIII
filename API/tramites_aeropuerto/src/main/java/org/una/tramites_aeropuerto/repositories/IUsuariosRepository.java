@@ -25,7 +25,7 @@ public interface IUsuariosRepository extends JpaRepository<Usuarios, Long> {
 
     public List<Usuarios> findByRolesId(Long id);
 
-    public List<Usuarios> findByEmpleadoId(Long id);
+    public List<Usuarios> findByJefeId(Long id);
 
     public Usuarios findByCedula(String cedula);
 

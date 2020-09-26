@@ -70,10 +70,5 @@ public class Usuarios_AreasServiceImplementation implements IUsuarios_AreasServi
         return Optional.ofNullable(usuarios_areasRepository.findByAreaTrabajoId(id_Area_trabajo));
     }
     
-//    @Override
-//    @Transactional(readOnly = true)
-//    public Optional<List<Usuarios_Areas>> findByUsuarioId(Long id_Usuario){
-//        return Optional.ofNullable(usuarios_areasRepository.findByUsuarioId(id_Usuario));
-//    }
     
 }

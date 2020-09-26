@@ -59,14 +59,6 @@ public class NotificacionesServiceImplementation implements  INotificacionesServ
       return notificacionesRepository.findById(id);
     }
     
-
-    
-//    @Override
-//    
-//    public Optional<List<Notificaciones>> findByEmisorAproximateIgnoreCase(String emisor) {
-//        return Optional.ofNullable(notificacionesRepository.findByEmisorContainingIgnoreCase(emisor));
-//    }
-    
     @Override
     @Transactional(readOnly = true)
     public Optional<List<Notificaciones>> findAll() {

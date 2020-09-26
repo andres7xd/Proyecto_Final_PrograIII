@@ -35,7 +35,7 @@ public interface IUsuariosService {
 
     public Optional<List<Usuarios>> findByRolesId(Long id);
 
-    public Optional<List<Usuarios>> findByEmpleadoId(Long id);
+    public Optional<List<Usuarios>> findByJefeId(Long id);
 
     public Optional<Usuarios> login(Usuarios usuario);
 

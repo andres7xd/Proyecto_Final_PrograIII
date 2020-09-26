@@ -52,17 +52,14 @@ public class Usuarios implements Serializable {
     private Roles roles;
 
     @ManyToOne
-    @JoinColumn(name = "Empleado_id")
-    private Usuarios empleado;
+    @JoinColumn(name = "Jefe_id")
+    private Usuarios jefe;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleado")
-    private List<Usuarios> empleados = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "jefe")
+    private List<Usuarios> jefes = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
     private List<Usuarios_Areas> Usuarios_Areas = new ArrayList<>();
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
-    private List<Marcas_horario> marcasHorarios = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
     private List<Notificaciones> notificaciones = new ArrayList<>();

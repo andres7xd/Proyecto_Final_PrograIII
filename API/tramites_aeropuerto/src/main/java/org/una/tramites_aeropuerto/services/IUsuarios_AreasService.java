@@ -29,6 +29,4 @@ public interface IUsuarios_AreasService {
     
     public Optional<List<Usuarios_Areas>> findByAreaTrabajoId(Long id_Area_trabajo);
     
-//    public Optional<List<Usuarios_Areas>> findByUsuarioId(Long id_Usuario);
-    
 }
