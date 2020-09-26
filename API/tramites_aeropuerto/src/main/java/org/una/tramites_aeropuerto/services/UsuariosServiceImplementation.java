@@ -8,6 +8,7 @@ package org.una.tramites_aeropuerto.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
@@ -21,7 +22,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.una.tramites_aeropuerto.dto.AuthenticationRequest;
 import org.una.tramites_aeropuerto.dto.AuthenticationResponse;
 import org.una.tramites_aeropuerto.dto.RolesDTO;
@@ -37,7 +37,7 @@ import org.una.tramites_aeropuerto.utils.MapperUtils;
  * @author rache
  */
 @Service
-public class UsuariosServiceImplementation implements IUsuariosService, UserDetailsService {
+public class UsuariosServiceImplementation implements IUsuariosService,UserDetailsService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -127,7 +127,6 @@ public class UsuariosServiceImplementation implements IUsuariosService, UserDeta
             usuario.setContrasenaEncriptada(bCryptPasswordEncoder.encode(password));
         }
     }
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Usuarios> usuarioBuscado = findByCedula(username);
@@ -144,7 +143,7 @@ public class UsuariosServiceImplementation implements IUsuariosService, UserDeta
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public AuthenticationResponse login(AuthenticationRequest authenticationRequest) {
 
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getCedula(), authenticationRequest.getContrasena()));
@@ -155,11 +154,11 @@ public class UsuariosServiceImplementation implements IUsuariosService, UserDeta
 
         if (usuario.isPresent()) {
             authenticationResponse.setJwt(jwtProvider.generateToken(authenticationRequest));
-
+           
             UsuariosDTO usuarioDto = MapperUtils.DtoFromEntity(usuario.get(), UsuariosDTO.class);
             authenticationResponse.setUsuario(usuarioDto);
-
-            RolesDTO rolesDto = MapperUtils.DtoFromEntity(usuario.get().getRoles(), RolesDTO.class);
+            
+            RolesDTO rolesDto = MapperUtils.DtoFromEntity(usuario.get(), RolesDTO.class);
             authenticationResponse.setRoles(rolesDto);
 
             return authenticationResponse;
@@ -168,6 +167,7 @@ public class UsuariosServiceImplementation implements IUsuariosService, UserDeta
         }
 
     }
+
 
     @Override
     public Optional<Usuarios> login(Usuarios usuario) {
