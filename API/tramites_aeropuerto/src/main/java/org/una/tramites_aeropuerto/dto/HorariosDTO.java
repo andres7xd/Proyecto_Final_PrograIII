@@ -23,7 +23,7 @@ import org.una.tramites_aeropuerto.entities.Usuarios_Areas;
 public class HorariosDTO {
 
     private Long id;
-    private int Dia_Entrada;
-    private int Dia_Salida;
-    private Usuarios_AreasDto usuarios_areas;
+    private Date Dia_Entrada;
+    private Date Dia_Salida;
+    private Usuarios_Areas usuarios_areas;
 }

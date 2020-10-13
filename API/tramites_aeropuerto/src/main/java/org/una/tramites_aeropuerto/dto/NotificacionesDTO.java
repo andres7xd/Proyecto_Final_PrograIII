@@ -25,6 +25,6 @@ public class NotificacionesDTO {
     private String mensaje;
     private String emisor;
     private byte estado;
-    private UsuariosDTO usuarios;
+//  private Usuarios usuarios;
     
 }

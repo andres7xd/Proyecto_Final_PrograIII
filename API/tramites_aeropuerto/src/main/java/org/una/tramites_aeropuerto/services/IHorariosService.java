@@ -28,4 +28,8 @@ public interface IHorariosService {
 
     public void deleteAll();
 
+
+//    public Optional<List<Horarios>> findByDiaEntradaBetween(Date startDate2, Date endDate2);
+
+    public Optional<List<Horarios>> findByDiaSalidaBetween(Date startDate, Date endDate);
 }
