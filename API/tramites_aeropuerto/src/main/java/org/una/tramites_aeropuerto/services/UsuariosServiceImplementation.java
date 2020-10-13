@@ -37,7 +37,7 @@ import org.una.tramites_aeropuerto.utils.MapperUtils;
  * @author rache
  */
 @Service
-public class UsuariosServiceImplementation implements IUsuariosService,UserDetailsService {
+public class UsuariosServiceImplementation implements IUsuariosService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -127,50 +127,15 @@ public class UsuariosServiceImplementation implements IUsuariosService,UserDetai
             usuario.setContrasenaEncriptada(bCryptPasswordEncoder.encode(password));
         }
     }
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Usuarios> usuarioBuscado = findByCedula(username);
-        if (usuarioBuscado.isPresent()) {
-            Usuarios usuario = usuarioBuscado.get();
-            List<GrantedAuthority> roles = new ArrayList<>();
-            roles.add(new SimpleGrantedAuthority("ADMIN"));
-            UserDetails userDetails = new User(usuario.getCedula(),
-                    usuario.getContrasenaEncriptada(), roles);
-            return userDetails;
-        } else {
-            return null;
-        }
-    }
+    
 
-    @Override
-    @Transactional
-    public AuthenticationResponse login(AuthenticationRequest authenticationRequest) {
-
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getCedula(), authenticationRequest.getContrasena()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        AuthenticationResponse authenticationResponse = new AuthenticationResponse();
-
-        Optional<Usuarios> usuario = findByCedula(authenticationRequest.getCedula());
-
-        if (usuario.isPresent()) {
-            authenticationResponse.setJwt(jwtProvider.generateToken(authenticationRequest));
-           
-            UsuariosDTO usuarioDto = MapperUtils.DtoFromEntity(usuario.get(), UsuariosDTO.class);
-            authenticationResponse.setUsuario(usuarioDto);
-            
-            RolesDTO rolesDto = MapperUtils.DtoFromEntity(usuario.get(), RolesDTO.class);
-            authenticationResponse.setRoles(rolesDto);
-
-            return authenticationResponse;
-        } else {
-            return null;
-        }
-
-    }
+ 
 
 
     @Override
     public Optional<Usuarios> login(Usuarios usuario) {
         return Optional.ofNullable(usuariosRepository.findByCedulaAndContrasenaEncriptada(usuario.getCedula(), usuario.getContrasenaEncriptada()));
     }
+
+ 
 }
