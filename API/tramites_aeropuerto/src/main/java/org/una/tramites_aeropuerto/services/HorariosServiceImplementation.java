@@ -5,7 +5,6 @@
  */
 package org.una.tramites_aeropuerto.services;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,22 +63,5 @@ public class HorariosServiceImplementation implements IHorariosService {
     public void deleteAll() {
         horariosRepository.deleteAll();
     }
-//    
-//    @Override
-//    @Transactional(readOnly = true)
-//    public Optional<List<Horarios>> findByUsuarioAreaId(Long id_Usuario_Area){
-//        return Optional.ofNullable(horariosRepository.findByUsuarioAreaId(id_Usuario_Area));
-//    }
-    
-//    @Override
-//    @Transactional(readOnly = true)
-//    public Optional<List<Horarios>> findByDiaEntradaBetween(Date startDate2, Date endDate2) {
-//        return Optional.ofNullable(horariosRepository.findByDiaEntradaBetween(startDate2, endDate2));
-//    }
-    
-    @Override
-    @Transactional(readOnly = true)
-    public Optional<List<Horarios>> findByDiaSalidaBetween(Date startDate, Date endDate) {
-        return Optional.ofNullable(horariosRepository.findByDiaSalidaBetween(startDate, endDate));
-    }
+
 }

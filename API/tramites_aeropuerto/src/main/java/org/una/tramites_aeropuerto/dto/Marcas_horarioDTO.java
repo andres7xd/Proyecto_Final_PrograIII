@@ -6,19 +6,24 @@
 package org.una.tramites_aeropuerto.dto;
 
 import java.util.Date;
-import org.una.tramites_aeropuerto.entities.Usuarios;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  *
  * @author rache
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor 
+@ToString
 public class Marcas_horarioDTO {
 
     private Long id;
     private Date Hora_Entrada;
     private Date Hora_Salida;
     private Date Horario;
-    private Long UsuarioId;
-    private Usuarios usuario;
 
 }

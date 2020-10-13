@@ -43,7 +43,13 @@ public class Imagenes implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "Imagen_Adjunta", length = 40000)
+    @Column(name = "imagen_adjunta", length = 40000)
     private String Imagen_Adjunta;
+    
+    @Column(name = "parte")
+    private int parte;
+    
+    @Column(name = "totalParte")
+    private int totalParte;
     
 }

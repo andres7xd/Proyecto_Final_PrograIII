@@ -48,7 +48,7 @@ import lombok.ToString;
 public class Usuarios implements Serializable {
 
     @ManyToOne
-    @JoinColumn(name = "Rol_id")
+    @JoinColumn(name = "rol_id")
     private Roles roles;
 
     @ManyToOne
@@ -60,9 +60,6 @@ public class Usuarios implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
     private List<Usuarios_Areas> Usuarios_Areas = new ArrayList<>();
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
-    private List<Marcas_horario> marcasHorarios = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
     private List<Notificaciones> notificaciones = new ArrayList<>();

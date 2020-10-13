@@ -47,17 +47,13 @@ import lombok.ToString;
 
 public class Marcas_horario implements Serializable {
 
-    @ManyToOne
-    @JoinColumn(name = "Usuario_id")
-    private Usuarios usuarios;
-
     @Id
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
 
-    @Column(name = "Hora_Entrada", updatable = false)
+    @Column(name = "hora_entrada", updatable = false)
 
     @Temporal(TemporalType.DATE)
 
@@ -65,7 +61,7 @@ public class Marcas_horario implements Serializable {
 
     private Date Hora_Entrada;
 
-    @Column(name = "Hora_Salida", updatable = false)
+    @Column(name = "hora_salida", updatable = false)
 
     @Temporal(TemporalType.DATE)
 
@@ -73,7 +69,7 @@ public class Marcas_horario implements Serializable {
 
     private Date Hora_Salida;
 
-    @Column(name = "Horario", updatable = false)
+    @Column(name = "horario", updatable = false)
 
     @Temporal(TemporalType.DATE)
 
