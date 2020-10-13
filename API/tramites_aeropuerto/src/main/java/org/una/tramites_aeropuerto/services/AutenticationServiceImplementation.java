@@ -8,7 +8,7 @@ package org.una.tramites_aeropuerto.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -35,19 +35,22 @@ import org.una.tramites_aeropuerto.utils.MapperUtils;
  * @author andre
  */
 @Service
-public class AutenticationServiceImplementation implements IAutenticationService, UserDetailsService{
-     @Autowired
+public class AutenticationServiceImplementation implements IAutenticationService, UserDetailsService {
+
+    @Autowired
     private AuthenticationManager authenticationManager;
-    
+
     @Autowired
     private JwtProvider jwtProvider;
-    
+
     @Autowired
     private IUsuariosService usuarioService;
-    
+
     @Autowired
     private IUsuariosRepository usuarioRepository;
+
     @Override
+    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Usuarios> usuarioBuscado = usuarioService.findByCedula(username);
         if (usuarioBuscado.isPresent()) {
@@ -61,24 +64,24 @@ public class AutenticationServiceImplementation implements IAutenticationService
             return null;
         }
     }
-    
-       @Override
-    @Transactional
+
+    @Override
+    @Transactional(readOnly = true)
     public AuthenticationResponse login(AuthenticationRequest authenticationRequest) {
 
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getCedula(), authenticationRequest.getContrasena()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         AuthenticationResponse authenticationResponse = new AuthenticationResponse();
 
-        Optional<Usuarios> usuario =usuarioService.findByCedula(authenticationRequest.getCedula());
+        Optional<Usuarios> usuario = usuarioService.findByCedula(authenticationRequest.getCedula());
 
         if (usuario.isPresent()) {
             authenticationResponse.setJwt(jwtProvider.generateToken(authenticationRequest));
-           
+
             UsuariosDTO usuarioDto = MapperUtils.DtoFromEntity(usuario.get(), UsuariosDTO.class);
             authenticationResponse.setUsuario(usuarioDto);
-            
-            RolesDTO rolesDto = MapperUtils.DtoFromEntity(usuario.get(), RolesDTO.class);
+
+            RolesDTO rolesDto = MapperUtils.DtoFromEntity(usuario.get().getRoles(), RolesDTO.class);
             authenticationResponse.setRoles(rolesDto);
 
             return authenticationResponse;

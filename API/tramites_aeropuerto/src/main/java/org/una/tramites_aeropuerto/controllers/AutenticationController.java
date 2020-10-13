@@ -21,7 +21,6 @@ import org.una.tramites_aeropuerto.dto.AuthenticationRequest;
 import org.una.tramites_aeropuerto.dto.AuthenticationResponse;
 import org.una.tramites_aeropuerto.dto.UsuariosDTO;
 import org.una.tramites_aeropuerto.services.IAutenticationService;
-import org.una.tramites_aeropuerto.services.IUsuariosService;
 
 /**
  *
@@ -31,28 +30,24 @@ import org.una.tramites_aeropuerto.services.IUsuariosService;
 @RequestMapping("/autentication")
 @Api(tags = {"Autentication"})
 public class AutenticationController {
-    
-     @Autowired
-    private IAutenticationService iautenticationusuarioService;
-    
-        @PostMapping("/login")
+
+    @Autowired
+    private IAutenticationService autenticationService;
+
+    @PostMapping("/login")
     @ResponseBody
-    @ApiOperation(value = "Inicio de sesión para conseguir un token de acceso", response = UsuariosDTO.class, tags = "Autentication")
+    @ApiOperation(value = "Inicio de sesión para conseguir un token de acceso", response = UsuariosDTO.class, tags = "Seguridad")
     public ResponseEntity<?> login(@Valid @RequestBody AuthenticationRequest authenticationRequest, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return new ResponseEntity("La información no esta bien formada o no coincide con el formato esperado", HttpStatus.BAD_REQUEST);
         }
         try {
-            AuthenticationResponse authenticationResponse = new AuthenticationResponse();
-            AuthenticationResponse token = iautenticationusuarioService.login(authenticationRequest);
+            AuthenticationResponse token = autenticationService.login(authenticationRequest);
 
             String stringtoken = String.valueOf(token);
             if (!stringtoken.isBlank()) {
-                authenticationResponse.setJwt(stringtoken);
-                //TODO: Complete this   authenticationResponse.setUsuario(usuario);
-                // TODO: Complete this    authenticationResponse.setPermisos(permisosOtorgados);
-                return new ResponseEntity(authenticationResponse, HttpStatus.OK);
+                return new ResponseEntity(token, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("Credenciales invalidos", HttpStatus.UNAUTHORIZED);
             }
