@@ -12,6 +12,6 @@ import org.una.tramites_aeropuerto.dto.AuthenticationResponse;
  *
  * @author andre
  */
-public interface IAutenticationService {
+public interface IAuthenticationService {
      public AuthenticationResponse  login(AuthenticationRequest authenticationRequest);
 }

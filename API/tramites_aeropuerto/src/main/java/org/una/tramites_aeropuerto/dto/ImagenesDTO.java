@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.una.tramites_aeropuerto.entities.Notificaciones;
 
 /**
  *
@@ -22,7 +21,9 @@ import org.una.tramites_aeropuerto.entities.Notificaciones;
 public class ImagenesDTO {
  
     private Long id;
-    private String Imagen_Adjunta;
-    private Notificaciones notificaciones;
+    private String Imagen_Adjunta; 
+    private int parte;
+    private int totalPartes;
+    private NotificacionesDTO notificaciones;
           
 }

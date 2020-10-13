@@ -49,14 +49,10 @@ public class Horarios implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Dia_Entrada", updatable = false)
-    @Temporal(TemporalType.DATE)
-    @Setter(AccessLevel.NONE)
-    private Date Dia_entrada;
+    @Column(name = "Dia_Entrada")
+    private int Dia_entrada;
 
-    @Column(name = "Dia_Salida", updatable = false)
-    @Temporal(TemporalType.DATE)
-    @Setter(AccessLevel.NONE)
-    private Date Dia_Salida;
+    @Column(name = "Dia_Salida")
+    private int Dia_Salida;
 
 }

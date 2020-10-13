@@ -52,7 +52,7 @@ public class Usuarios implements Serializable {
     private Roles roles;
 
     @ManyToOne
-    @JoinColumn(name = "Empleado_id")
+    @JoinColumn(name = "jefe_id")
     private Usuarios empleado;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleado")
@@ -60,9 +60,6 @@ public class Usuarios implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
     private List<Usuarios_Areas> Usuarios_Areas = new ArrayList<>();
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
-    private List<Marcas_horario> marcasHorarios = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
     private List<Notificaciones> notificaciones = new ArrayList<>();

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.una.tramites_aeropuerto.dto.Usuarios_AreasDto;
+import org.una.tramites_aeropuerto.dto.Usuarios_AreasDTO;
 import org.una.tramites_aeropuerto.entities.Usuarios_Areas;
 import org.una.tramites_aeropuerto.services.IUsuarios_AreasService;
 import org.una.tramites_aeropuerto.utils.MapperUtils;
@@ -43,11 +43,11 @@ public class Usuarios_AreasController {
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/")
     @ResponseBody
-    @ApiOperation(value = "Creacion de una área de un usuario_area:", response = Usuarios_AreasDto.class, tags = "Usuarios_Areas")
+    @ApiOperation(value = "Creacion de una área de un usuario_area:", response = Usuarios_AreasDTO.class, tags = "Usuarios_Areas")
     public ResponseEntity<?> create(@RequestBody Usuarios_Areas usuarios_areas) {
         try {
             Usuarios_Areas usuarios_areasCreated = usuarios_areasService.create(usuarios_areas);
-            Usuarios_AreasDto usuarios_areasDto = MapperUtils.DtoFromEntity(usuarios_areasCreated, Usuarios_AreasDto.class);
+            Usuarios_AreasDTO usuarios_areasDto = MapperUtils.DtoFromEntity(usuarios_areasCreated, Usuarios_AreasDTO.class);
             return new ResponseEntity<>(usuarios_areasDto, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -56,12 +56,12 @@ public class Usuarios_AreasController {
 
     @PutMapping("/{id}")
     @ResponseBody
-    @ApiOperation(value = "Actualizacion de áreas de un usuario_area:", response = Usuarios_AreasDto.class, tags = "Usuarios_Areas")
+    @ApiOperation(value = "Actualizacion de áreas de un usuario_area:", response = Usuarios_AreasDTO.class, tags = "Usuarios_Areas")
     public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @RequestBody Usuarios_Areas usuarios_areasModified) {
         try {
             Optional<Usuarios_Areas> usuarios_areasUpdated = usuarios_areasService.update(usuarios_areasModified, id);
             if (usuarios_areasUpdated.isPresent()) {
-                Usuarios_AreasDto usuarios_areasDto = MapperUtils.DtoFromEntity(usuarios_areasUpdated.get(), Usuarios_AreasDto.class);
+                Usuarios_AreasDTO usuarios_areasDto = MapperUtils.DtoFromEntity(usuarios_areasUpdated.get(), Usuarios_AreasDTO.class);
                 return new ResponseEntity<>(usuarios_areasDto, HttpStatus.OK);
 
             } else {
@@ -74,13 +74,13 @@ public class Usuarios_AreasController {
     }
 
     @GetMapping()
-    @ApiOperation(value = "Obtiene una lista de todas los usuarios_areas", response = Usuarios_AreasDto.class, responseContainer = "List", tags = "Usuarios_Areas")
+    @ApiOperation(value = "Obtiene una lista de todas los usuarios_areas", response = Usuarios_AreasDTO.class, responseContainer = "List", tags = "Usuarios_Areas")
     public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
             Optional<List<Usuarios_Areas>> result = usuarios_areasService.findAll();
             if (result.isPresent()) {
-                List<Usuarios_AreasDto> usuarios_areasDto = MapperUtils.DtoListFromEntityList(result.get(), Usuarios_AreasDto.class);
+                List<Usuarios_AreasDTO> usuarios_areasDto = MapperUtils.DtoListFromEntityList(result.get(), Usuarios_AreasDTO.class);
                 return new ResponseEntity<>(usuarios_areasDto, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -96,7 +96,7 @@ public class Usuarios_AreasController {
 
             Optional<Usuarios_Areas> usuarios_areas = usuarios_areasService.findById(id);
             if (usuarios_areas.isPresent()) {
-                Usuarios_AreasDto usuarios_areasDto = MapperUtils.DtoFromEntity(usuarios_areas.get(), Usuarios_AreasDto.class);
+                Usuarios_AreasDTO usuarios_areasDto = MapperUtils.DtoFromEntity(usuarios_areas.get(), Usuarios_AreasDTO.class);
                 return new ResponseEntity<>(usuarios_areasDto, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

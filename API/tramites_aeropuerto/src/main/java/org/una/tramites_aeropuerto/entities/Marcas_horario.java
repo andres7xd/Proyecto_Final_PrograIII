@@ -10,7 +10,10 @@ package org.una.tramites_aeropuerto.entities;
  * @author rache
  */
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +21,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -47,9 +51,8 @@ import lombok.ToString;
 
 public class Marcas_horario implements Serializable {
 
-    @ManyToOne
-    @JoinColumn(name = "Usuario_id")
-    private Usuarios usuarios;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "marcas_horario")
+    private List<Usuarios_Areas> usuarios_areas = new ArrayList<>();
 
     @Id
 
@@ -65,7 +68,7 @@ public class Marcas_horario implements Serializable {
 
     private Date Hora_Entrada;
 
-    @Column(name = "Hora_Salida", updatable = false)
+    @Column(name = "Hora_Salida")
 
     @Temporal(TemporalType.DATE)
 
@@ -80,9 +83,10 @@ public class Marcas_horario implements Serializable {
     @Setter(AccessLevel.NONE)
 
     private Date Horario;
-    
+
     private static final long serialVersionUID = 1L;
-     @PrePersist
+
+    @PrePersist
 
     public void prePersist() {
 

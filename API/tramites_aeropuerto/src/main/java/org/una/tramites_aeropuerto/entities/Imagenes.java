@@ -36,7 +36,7 @@ import lombok.ToString;
 public class Imagenes implements Serializable {
     
     @ManyToOne
-    @JoinColumn(name = "notificaiones_id")
+    @JoinColumn(name = "notificaciones_id")
     private Notificaciones notificaciones;
     
     @Id
@@ -45,5 +45,11 @@ public class Imagenes implements Serializable {
     
     @Column(name = "Imagen_Adjunta", length = 40000)
     private String Imagen_Adjunta;
+    
+    @Column(name = "parte")
+    private int parte;
+    
+    @Column(name = "totalPartes")
+    private int totalPartes; 
     
 }

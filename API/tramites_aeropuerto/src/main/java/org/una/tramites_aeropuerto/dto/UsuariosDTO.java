@@ -30,5 +30,5 @@ public class UsuariosDTO {
     private byte estado;
     private Date Fecha_Registro;
     private Usuarios empleadoid;
-    private Roles rolid;
+    private RolesDTO roles;
 }

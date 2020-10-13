@@ -5,12 +5,10 @@
  */
 package org.una.tramites_aeropuerto.dto;
 
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.una.tramites_aeropuerto.entities.Usuarios_Areas;
 
 /**
  *
@@ -23,7 +21,7 @@ import org.una.tramites_aeropuerto.entities.Usuarios_Areas;
 public class HorariosDTO {
 
     private Long id;
-    private Date Dia_Entrada;
-    private Date Dia_Salida;
-    private Usuarios_Areas usuarios_areas;
+    private int Dia_Entrada;
+    private int Dia_Salida;
+    private Usuarios_AreasDTO Usuarios_Areas;
 }

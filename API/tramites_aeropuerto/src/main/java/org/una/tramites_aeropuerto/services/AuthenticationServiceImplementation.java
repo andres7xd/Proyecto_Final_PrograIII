@@ -35,7 +35,7 @@ import org.una.tramites_aeropuerto.utils.MapperUtils;
  * @author andre
  */
 @Service
-public class AutenticationServiceImplementation implements IAutenticationService, UserDetailsService {
+public class AuthenticationServiceImplementation implements IAuthenticationService, UserDetailsService {
 
     @Autowired
     private AuthenticationManager authenticationManager;

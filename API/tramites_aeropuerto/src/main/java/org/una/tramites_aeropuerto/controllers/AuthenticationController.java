@@ -20,23 +20,23 @@ import org.springframework.web.bind.annotation.RestController;
 import org.una.tramites_aeropuerto.dto.AuthenticationRequest;
 import org.una.tramites_aeropuerto.dto.AuthenticationResponse;
 import org.una.tramites_aeropuerto.dto.UsuariosDTO;
-import org.una.tramites_aeropuerto.services.IAutenticationService;
+import org.una.tramites_aeropuerto.services.IAuthenticationService;
 
 /**
  *
  * @author andre
  */
 @RestController
-@RequestMapping("/autentication")
-@Api(tags = {"Autentication"})
-public class AutenticationController {
+@RequestMapping("/authentication")
+@Api(tags = {"Authentication"})
+public class AuthenticationController {
 
     @Autowired
-    private IAutenticationService autenticationService;
+    private IAuthenticationService autenticationService;
 
     @PostMapping("/login")
     @ResponseBody
-    @ApiOperation(value = "Inicio de sesión para conseguir un token de acceso", response = UsuariosDTO.class, tags = "Seguridad")
+    @ApiOperation(value = "Inicio de sesión para conseguir un token de acceso", response = UsuariosDTO.class, tags = "Authentication")
     public ResponseEntity<?> login(@Valid @RequestBody AuthenticationRequest authenticationRequest, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {

@@ -54,7 +54,7 @@ public class SwaggerConfiguration {
                 .paths(PathSelectors.regex("/.*"))
                 .build()
                 .apiInfo(apiInfo())
-                .tags(new Tag("Seguridad", "Metodos de Seguridad"),
+                .tags(new Tag("Authentication", "Método de autenticación"),
                         new Tag("Usuarios", "Entidad de Usuarios"),
                         new Tag("Marcas_horario", "Entidad Marcas_horario"),
                         new Tag("Roles", "Entidad Roles"),
