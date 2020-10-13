@@ -28,5 +28,7 @@ public interface INotificacionesService {
     public void deleteAll();
     
    public Optional<Notificaciones> findByEmisor(String emisor);
-
+//    public Optional<List<Notificaciones>> findByEmisorAproximateIgnoreCase(String emisor);
+    
+//    public Optional<List<Notificaciones>> findByemisorAproximate(String emisor);
 }

@@ -59,7 +59,7 @@ public class DataLoader implements ApplicationRunner {
             usuario.setCorreo("@@@@");
             usuario.setCedula(cedula);
             usuario.setId(Long.MIN_VALUE);
-            usuario.setJefe(usuario);
+            usuario.setEmpleado(usuario);
             usuario.setContrasenaEncriptada(contrasena);
             usuario.setRoles(rol);
             usuario = usuarioService.create(usuario);

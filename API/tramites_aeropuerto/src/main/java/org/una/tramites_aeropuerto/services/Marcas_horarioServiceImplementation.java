@@ -24,6 +24,11 @@ public class Marcas_horarioServiceImplementation implements IMarcas_horarioServi
     private IMarcas_horarioRepository marcas_horarioRepository;
 
     @Override
+    public Optional<List<Marcas_horario>> findByHorarioBetween(Date startDate, Date endDate) {
+        return Optional.ofNullable(marcas_horarioRepository.findByHorarioBetween(startDate, endDate));
+    }
+
+    @Override
     public Optional<List<Marcas_horario>> findByHora_EntradaBetween(Date startDate, Date endDate) {
         return Optional.ofNullable(marcas_horarioRepository.findByHora_EntradaBetween(startDate, endDate));
     }

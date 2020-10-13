@@ -14,8 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -39,10 +37,6 @@ import lombok.ToString;
 
 @ToString
 public class Areas_trabajo implements Serializable {
-    
-    @ManyToOne
-    @JoinColumn(name = "Marcas_horario_id")
-    private Marcas_horario marcas_horario;
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "areas_trabajo")
   private List<Usuarios_Areas> usuarios_areas = new ArrayList<>();

@@ -10,7 +10,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.una.tramites_aeropuerto.entities.Areas_trabajo;
-import org.una.tramites_aeropuerto.entities.Usuarios;
 
 /**
  *
@@ -24,5 +23,5 @@ public class Usuarios_AreasDto {
    
     private Long id;
     private Areas_trabajo area_trabajo;
-    private Usuarios usuarios;
+//   private Usuarios usuarios;
 }

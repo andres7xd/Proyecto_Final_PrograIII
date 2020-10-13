@@ -6,7 +6,7 @@
 package org.una.tramites_aeropuerto.entities;
 
 import java.io.Serializable;
-import java.sql.Time;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,9 +15,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -40,21 +44,19 @@ public class Horarios implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_Usuario_Area")
     private Usuarios_Areas Usuarios_Areas;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "Dia_Entrada", updatable = false)
-    private int Dia_entrada;
+    @Temporal(TemporalType.DATE)
+    @Setter(AccessLevel.NONE)
+    private Date Dia_entrada;
 
     @Column(name = "Dia_Salida", updatable = false)
-    private int Dia_Salida;
-
-    @Column(name = "Hora_Entrada", updatable = false)
-    private Time Hora_entrada;
-    
-    @Column(name = "Hora_Salida", updatable = false)
-    private Time Hora_Salida;
+    @Temporal(TemporalType.DATE)
+    @Setter(AccessLevel.NONE)
+    private Date Dia_Salida;
 
 }

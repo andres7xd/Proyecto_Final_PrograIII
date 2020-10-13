@@ -10,10 +10,7 @@ package org.una.tramites_aeropuerto.entities;
  * @author rache
  */
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +18,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -50,10 +46,10 @@ import lombok.ToString;
 @ToString
 
 public class Marcas_horario implements Serializable {
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "marcas_horario")
-    private List<Areas_trabajo> areas_trabajo = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "Usuario_id")
+    private Usuarios usuarios;
 
     @Id
 
@@ -76,12 +72,21 @@ public class Marcas_horario implements Serializable {
     @Setter(AccessLevel.NONE)
 
     private Date Hora_Salida;
+
+    @Column(name = "Horario", updatable = false)
+
+    @Temporal(TemporalType.DATE)
+
+    @Setter(AccessLevel.NONE)
+
+    private Date Horario;
     
     private static final long serialVersionUID = 1L;
      @PrePersist
 
     public void prePersist() {
-        
+
+        Horario = new Date();
         Hora_Entrada = new Date();
         Hora_Salida = new Date();
 

@@ -117,8 +117,8 @@ public class UsuariosServiceImplementation implements IUsuariosService,UserDetai
     }
 
     @Override
-    public Optional<List<Usuarios>> findByJefeId(Long id) {
-        return Optional.ofNullable(usuariosRepository.findByJefeId(id));
+    public Optional<List<Usuarios>> findByEmpleadoId(Long id) {
+        return Optional.ofNullable(usuariosRepository.findByEmpleadoId(id));
     }
 
     private void encriptarContrasena(Usuarios usuario) {

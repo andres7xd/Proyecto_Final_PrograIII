@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.una.tramites_aeropuerto.dto.ImagenesDTO;
 import org.una.tramites_aeropuerto.dto.NotificacionesDTO;
+import org.una.tramites_aeropuerto.dto.UsuariosDTO;
 import org.una.tramites_aeropuerto.entities.Imagenes;
+import org.una.tramites_aeropuerto.entities.Notificaciones;
 import org.una.tramites_aeropuerto.services.IImagenesService;
 import org.una.tramites_aeropuerto.utils.MapperUtils;
 
