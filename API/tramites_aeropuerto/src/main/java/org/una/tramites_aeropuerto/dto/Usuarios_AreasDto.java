@@ -16,10 +16,10 @@ import lombok.ToString;
  */
 @Data
 @AllArgsConstructor
-@NoArgsConstructor 
+@NoArgsConstructor
 @ToString
 public class Usuarios_AreasDTO {
-   
+
     private Long id;
     private Areas_trabajoDTO areas_trabajo;
     private UsuariosDTO usuarios;

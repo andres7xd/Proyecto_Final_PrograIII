@@ -16,11 +16,9 @@ import lombok.ToString;
  */
 @Data
 @AllArgsConstructor
-@NoArgsConstructor 
+@NoArgsConstructor
 @ToString
 public class Areas_trabajoDTO {
-   
     private Long id;
     private String nombre;
-    
 }
