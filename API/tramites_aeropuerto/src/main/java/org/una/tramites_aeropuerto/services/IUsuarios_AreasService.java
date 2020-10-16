@@ -7,7 +7,7 @@ package org.una.tramites_aeropuerto.services;
 
 import java.util.List;
 import java.util.Optional;
-import org.una.tramites_aeropuerto.entities.Usuarios_Areas;
+import org.una.tramites_aeropuerto.dto.Usuarios_AreasDTO;
 
 /**
  *
@@ -15,20 +15,16 @@ import org.una.tramites_aeropuerto.entities.Usuarios_Areas;
  */
 public interface IUsuarios_AreasService {
     
-    public Optional<List<Usuarios_Areas>> findAll();
+    public Optional<List<Usuarios_AreasDTO>> findAll();
     
-    public Optional<Usuarios_Areas> findById(Long id);
+    public Optional<Usuarios_AreasDTO> findById(Long id);
      
-    public Usuarios_Areas create(Usuarios_Areas usuarios_areas);
+    public Usuarios_AreasDTO create(Usuarios_AreasDTO usuarios_AreasDTO);
 
-    public Optional<Usuarios_Areas> update(Usuarios_Areas usuarios_areas, Long id);
+    public Optional<Usuarios_AreasDTO> update(Usuarios_AreasDTO usuarios_AreasDTO, Long id);
 
     public void delete(Long id);
 
     public void deleteAll();
-    
-    public Optional<List<Usuarios_Areas>> findByAreaTrabajoId(Long id_Area_trabajo);
-    
-//    public Optional<List<Usuarios_Areas>> findByUsuarioId(Long id_Usuario);
     
 }
