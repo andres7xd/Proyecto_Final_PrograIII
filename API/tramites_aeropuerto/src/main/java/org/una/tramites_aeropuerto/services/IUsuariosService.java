@@ -7,9 +7,7 @@ package org.una.tramites_aeropuerto.services;
 
 import java.util.List;
 import java.util.Optional;
-import org.una.tramites_aeropuerto.dto.AuthenticationRequest;
-import org.una.tramites_aeropuerto.dto.AuthenticationResponse;
-import org.una.tramites_aeropuerto.entities.Usuarios;
+import org.una.tramites_aeropuerto.dto.UsuariosDTO;
 
 /**
  *
@@ -17,29 +15,25 @@ import org.una.tramites_aeropuerto.entities.Usuarios;
  */
 public interface IUsuariosService {
 
-    public Optional<List<Usuarios>> findAll();
+    public Optional<List<UsuariosDTO>> findAll();
 
-    public Optional<Usuarios> findById(Long id);
+    public Optional<UsuariosDTO> findById(Long id);
 
-    public Optional<List<Usuarios>> findByCedulaAproximate(String cedula);
+    public Optional<List<UsuariosDTO>> findByCedulaAproximate(String cedula);
 
-    public Optional<List<Usuarios>> findByCorreoAproximate(String correo);
+    public Optional<List<UsuariosDTO>> findByCorreoAproximate(String correo);
 
-    public Optional<List<Usuarios>> findByNombreCompletoAproximateIgnoreCase(String nombreCompleto);
+    public Optional<List<UsuariosDTO>> findByNombreCompletoAproximateIgnoreCase(String nombreCompleto);
 
-   
+    public UsuariosDTO create(UsuariosDTO usuariosDTO);
 
-    public Usuarios create(Usuarios usuario);
+    public Optional<UsuariosDTO> update(UsuariosDTO usuariosDTO, Long id);
 
-    public Optional<Usuarios> update(Usuarios usuario, Long id);
+    public Optional<List<UsuariosDTO>> findByRolesId(Long id);
 
-    public Optional<List<Usuarios>> findByRolesId(Long id);
+    public Optional<List<UsuariosDTO>> findByEmpleadoId(Long id);
 
-    public Optional<List<Usuarios>> findByEmpleadoId(Long id);
-
-    public Optional<Usuarios> login(Usuarios usuario);
-
-    public Optional<Usuarios> findByCedula(String cedula);
+    public Optional<UsuariosDTO> findByCedula(String cedula);
 
     public void delete(Long id);
 

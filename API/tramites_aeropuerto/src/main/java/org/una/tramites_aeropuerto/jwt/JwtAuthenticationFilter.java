@@ -19,7 +19,6 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.una.tramites_aeropuerto.services.AuthenticationServiceImplementation;
-import org.una.tramites_aeropuerto.services.UsuariosServiceImplementation;
 
 /**
  *

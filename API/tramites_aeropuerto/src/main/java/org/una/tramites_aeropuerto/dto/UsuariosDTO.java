@@ -10,7 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.una.tramites_aeropuerto.entities.Roles;
 import org.una.tramites_aeropuerto.entities.Usuarios;
 
 /**
@@ -29,6 +28,7 @@ public class UsuariosDTO {
     private String correo;
     private byte estado;
     private Date Fecha_Registro;
-    private Usuarios empleadoid;
+    private String contrasenaEncriptada;
+    private UsuariosDTO empleado;
     private RolesDTO roles;
 }

@@ -50,19 +50,17 @@ public class AuthenticationServiceImplementation implements IAuthenticationServi
     private IUsuariosRepository usuarioRepository;
 
     @Override
-    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Usuarios> usuarioBuscado = usuarioService.findByCedula(username);
-        if (usuarioBuscado.isPresent()) {
-            Usuarios usuario = usuarioBuscado.get();
+        Usuarios usuarioBuscado = usuarioRepository.findByCedula(username);
+        if (usuarioBuscado != null) {
             List<GrantedAuthority> roles = new ArrayList<>();
-            roles.add(new SimpleGrantedAuthority("ADMIN"));
-            UserDetails userDetails = new User(usuario.getCedula(),
-                    usuario.getContrasenaEncriptada(), roles);
+            roles.add(new SimpleGrantedAuthority(usuarioBuscado.getRoles().getNombre()));
+            UserDetails userDetails = new User(usuarioBuscado.getCedula(), usuarioBuscado.getContrasenaEncriptada(), roles);
             return userDetails;
         } else {
             return null;
         }
+
     }
 
     @Override
@@ -73,7 +71,7 @@ public class AuthenticationServiceImplementation implements IAuthenticationServi
         SecurityContextHolder.getContext().setAuthentication(authentication);
         AuthenticationResponse authenticationResponse = new AuthenticationResponse();
 
-        Optional<Usuarios> usuario = usuarioService.findByCedula(authenticationRequest.getCedula());
+        Optional<UsuariosDTO> usuario = usuarioService.findByCedula(authenticationRequest.getCedula());
 
         if (usuario.isPresent()) {
             authenticationResponse.setJwt(jwtProvider.generateToken(authenticationRequest));

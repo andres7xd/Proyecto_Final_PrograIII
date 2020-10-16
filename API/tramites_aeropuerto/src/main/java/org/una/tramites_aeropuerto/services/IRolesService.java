@@ -7,24 +7,25 @@ package org.una.tramites_aeropuerto.services;
 
 import java.util.List;
 import java.util.Optional;
-import org.una.tramites_aeropuerto.entities.Roles;
-
+import org.una.tramites_aeropuerto.dto.RolesDTO;
 /**
  *
  * @author rache
  */
 public interface IRolesService {
 
-    public Optional<List<Roles>> findAll();
+    public Optional<List<RolesDTO>> findAll();
 
-    public Optional<Roles> findById(Long id);
+    public Optional<RolesDTO> findById(Long id);
 
-    public Optional<Roles> findByNombreAproximateIgnoreCase(String nombre);
+    public Optional<RolesDTO> findByNombreAproximateIgnoreCase(String nombre);
 
-    public Roles create(Roles rol);
+    public RolesDTO create(RolesDTO rolesDTO);
 
-    public Optional<Roles> update(Roles rol, Long id);
+    public Optional<RolesDTO> update(RolesDTO rolesDTO, Long id);
 
     public void delete(Long id);
+    
+    public void deleteAll();
 
 }

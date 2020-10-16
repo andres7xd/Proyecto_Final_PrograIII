@@ -12,10 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.una.tramites_aeropuerto.dto.UsuariosDTO;
 
 import org.una.tramites_aeropuerto.entities.Usuarios;
 import org.una.tramites_aeropuerto.jwt.JwtProvider;
 import org.una.tramites_aeropuerto.repositories.IUsuariosRepository;
+import org.una.tramites_aeropuerto.utils.Convertir;
+import org.una.tramites_aeropuerto.utils.MapperUtils;
 
 /**
  *
@@ -25,51 +28,50 @@ import org.una.tramites_aeropuerto.repositories.IUsuariosRepository;
 public class UsuariosServiceImplementation implements IUsuariosService {
 
     @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private JwtProvider jwtProvider;
-    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Autowired
     private IUsuariosRepository usuariosRepository;
 
     @Override
-    public Optional<List<Usuarios>> findAll() {
-        return Optional.ofNullable(usuariosRepository.findAll());
+    public Optional<List<UsuariosDTO>> findAll() {
+        return (Optional<List<UsuariosDTO>>) Convertir.findList(Optional.ofNullable(usuariosRepository.findAll()), UsuariosDTO.class);
     }
 
     @Override
-    public Optional<Usuarios> findById(Long id) {
-        return usuariosRepository.findById(id);
+    public Optional<UsuariosDTO> findById(Long id) {
+        return (Optional<UsuariosDTO>) Convertir.oneToDto(usuariosRepository.findById(id), UsuariosDTO.class);
     }
 
     @Override
-    public Optional<List<Usuarios>> findByCedulaAproximate(String cedula) {
-        return Optional.ofNullable(usuariosRepository.findByCedulaContaining(cedula));
+    public Optional<List<UsuariosDTO>> findByCedulaAproximate(String cedula) {
+        return (Optional<List<UsuariosDTO>>) Convertir.findList(Optional.ofNullable(usuariosRepository.findByCedulaContaining(cedula)), UsuariosDTO.class);
     }
 
     @Override
-    public Optional<List<Usuarios>> findByNombreCompletoAproximateIgnoreCase(String nombreCompleto) {
-        return Optional.ofNullable(usuariosRepository.findByNombreCompletoContainingIgnoreCase(nombreCompleto));
-    }
-
-    @Override
-    @Transactional
-    public Usuarios create(Usuarios usuario) {
-        encriptarContrasena(usuario);
-        return usuariosRepository.save(usuario);
+    public Optional<List<UsuariosDTO>> findByNombreCompletoAproximateIgnoreCase(String nombreCompleto) {
+        return (Optional<List<UsuariosDTO>>) Convertir.findList(Optional.ofNullable(usuariosRepository.findByNombreCompletoContainingIgnoreCase(nombreCompleto)), UsuariosDTO.class);
     }
 
     @Override
     @Transactional
-    public Optional<Usuarios> update(Usuarios usuario, Long id) {
+    public UsuariosDTO create(UsuariosDTO usuariosDTO) {
+        encriptarContrasena(usuariosDTO);
+        Usuarios usuarios = MapperUtils.EntityFromDto(usuariosDTO, Usuarios.class);
+        usuarios = usuariosRepository.save(usuarios);
+        return MapperUtils.DtoFromEntity(usuarios, UsuariosDTO.class);
+    }
+
+    @Override
+    @Transactional
+    public Optional<UsuariosDTO> update(UsuariosDTO usuariosDTO, Long id) {
         if (usuariosRepository.findById(id).isPresent()) {
-            return Optional.ofNullable(usuariosRepository.save(usuario));
+            Usuarios usuarios = MapperUtils.EntityFromDto(usuariosDTO, Usuarios.class);
+            usuarios = usuariosRepository.save(usuarios);
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(usuarios, UsuariosDTO.class));
         } else {
             return null;
         }
-
     }
 
     @Override
@@ -86,41 +88,31 @@ public class UsuariosServiceImplementation implements IUsuariosService {
     }
 
     @Override
-    public Optional<List<Usuarios>> findByRolesId(Long id) {
-        return Optional.ofNullable(usuariosRepository.findByRolesId(id));
+    public Optional<List<UsuariosDTO>> findByRolesId(Long id) {
+        return (Optional<List<UsuariosDTO>>) Convertir.findList(Optional.ofNullable(usuariosRepository.findByRolesId(id)), UsuariosDTO.class);
     }
 
     @Override
 
-    public Optional<Usuarios> findByCedula(String cedula) {
-        return Optional.ofNullable(usuariosRepository.findByCedula(cedula));
+    public Optional<UsuariosDTO> findByCedula(String cedula) {
+        return (Optional<UsuariosDTO>) Convertir.oneToDto(Optional.ofNullable(usuariosRepository.findByCedula(cedula)), UsuariosDTO.class);
     }
 
     @Override
-    public Optional<List<Usuarios>> findByCorreoAproximate(String correo) {
-        return Optional.ofNullable(usuariosRepository.findByCorreoContaining(correo));
+    public Optional<List<UsuariosDTO>> findByCorreoAproximate(String correo) {
+        return (Optional<List<UsuariosDTO>>) Convertir.findList(Optional.ofNullable(usuariosRepository.findByCorreoContaining(correo)), UsuariosDTO.class);
     }
 
     @Override
-    public Optional<List<Usuarios>> findByEmpleadoId(Long id) {
-        return Optional.ofNullable(usuariosRepository.findByEmpleadoId(id));
+    public Optional<List<UsuariosDTO>> findByEmpleadoId(Long id) {
+        return (Optional<List<UsuariosDTO>>) Convertir.findList(Optional.ofNullable(usuariosRepository.findByEmpleadoId(id)), UsuariosDTO.class);
     }
 
-    private void encriptarContrasena(Usuarios usuario) {
-        String password = usuario.getContrasenaEncriptada();
+    private void encriptarContrasena(UsuariosDTO usuariosDTO) {
+        String password = usuariosDTO.getContrasenaEncriptada();
         if (!password.isBlank()) {
-            usuario.setContrasenaEncriptada(bCryptPasswordEncoder.encode(password));
+            usuariosDTO.setContrasenaEncriptada(bCryptPasswordEncoder.encode(password));
         }
     }
-    
 
- 
-
-
-    @Override
-    public Optional<Usuarios> login(Usuarios usuario) {
-        return Optional.ofNullable(usuariosRepository.findByCedulaAndContrasenaEncriptada(usuario.getCedula(), usuario.getContrasenaEncriptada()));
-    }
-
- 
 }

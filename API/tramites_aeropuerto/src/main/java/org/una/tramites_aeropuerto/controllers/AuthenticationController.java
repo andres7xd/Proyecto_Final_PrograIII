@@ -45,7 +45,7 @@ public class AuthenticationController {
         try {
             AuthenticationResponse token = autenticationService.login(authenticationRequest);
 
-            String stringtoken = String.valueOf(token);
+            String stringtoken = token.getJwt();
             if (!stringtoken.isBlank()) {
                 return new ResponseEntity(token, HttpStatus.OK);
             } else {

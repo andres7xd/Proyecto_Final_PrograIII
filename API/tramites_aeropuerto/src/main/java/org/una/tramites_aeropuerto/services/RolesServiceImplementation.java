@@ -9,8 +9,11 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.una.tramites_aeropuerto.dto.RolesDTO;
 import org.una.tramites_aeropuerto.entities.Roles;
 import org.una.tramites_aeropuerto.repositories.IRolesRepository;
+import org.una.tramites_aeropuerto.utils.Convertir;
+import org.una.tramites_aeropuerto.utils.MapperUtils;
 
 /**
  *
@@ -23,20 +26,23 @@ public class RolesServiceImplementation implements IRolesService {
     private IRolesRepository rolesRepository;
 
     @Override
-    public Optional<List<Roles>> findAll() {
-        return Optional.ofNullable(rolesRepository.findAll());
-    }
-
-
-    @Override
-    public Roles create(Roles rol) {
-        return rolesRepository.save(rol);
+    public Optional<List<RolesDTO>> findAll() {
+        return (Optional<List<RolesDTO>>) Convertir.findList(Optional.ofNullable(rolesRepository.findAll()), RolesDTO.class);
     }
 
     @Override
-    public Optional<Roles> update(Roles rol, Long id) {
+    public RolesDTO create(RolesDTO rolesDTO) {
+        Roles roles = MapperUtils.EntityFromDto(rolesDTO, Roles.class);
+        roles = rolesRepository.save(roles);
+        return MapperUtils.DtoFromEntity(roles, RolesDTO.class);
+    }
+
+    @Override
+    public Optional<RolesDTO> update(RolesDTO rolesDTO, Long id) {
         if (rolesRepository.findById(id).isPresent()) {
-            return Optional.ofNullable(rolesRepository.save(rol));
+            Roles roles = MapperUtils.EntityFromDto(rolesDTO, Roles.class);
+            roles = rolesRepository.save(roles);
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(roles, RolesDTO.class));
         } else {
             return null;
         }
@@ -48,13 +54,18 @@ public class RolesServiceImplementation implements IRolesService {
     }
 
     @Override
-    public Optional<Roles> findById(Long id) {
-        return rolesRepository.findById(id);
-    }
- @Override
-    public Optional<Roles>findByNombreAproximateIgnoreCase(String nombre) {
-        return Optional.ofNullable(rolesRepository.findByNombreContainingIgnoreCase(nombre));
+    public void deleteAll() {
+        rolesRepository.deleteAll();
     }
 
- 
+    @Override
+    public Optional<RolesDTO> findById(Long id) {
+        return (Optional<RolesDTO>) Convertir.oneToDto(rolesRepository.findById(id), RolesDTO.class);
+    }
+
+    @Override
+    public Optional<RolesDTO> findByNombreAproximateIgnoreCase(String nombre) {
+        return (Optional<RolesDTO>) Convertir.oneToDto(Optional.ofNullable(rolesRepository.findByNombreContainingIgnoreCase(nombre)), RolesDTO.class);
+    }
+
 }

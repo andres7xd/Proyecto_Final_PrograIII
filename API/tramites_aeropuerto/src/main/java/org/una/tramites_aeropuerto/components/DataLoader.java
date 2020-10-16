@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-import org.una.tramites_aeropuerto.entities.Roles;
-import org.una.tramites_aeropuerto.entities.Usuarios;
+import org.una.tramites_aeropuerto.dto.RolesDTO;
+import org.una.tramites_aeropuerto.dto.UsuariosDTO;
 import org.una.tramites_aeropuerto.loaders.Permisos;
 import org.una.tramites_aeropuerto.services.IRolesService;
 import org.una.tramites_aeropuerto.services.IUsuariosService;
@@ -41,12 +41,12 @@ public class DataLoader implements ApplicationRunner {
 
         if (usuarioService.findByCedula(cedula).isEmpty()) {
 
-            Roles rol;
+            RolesDTO rol;
             final String TipoRol = "Administrador";
-            Optional<Roles> rolBuscado = rolService.findByNombreAproximateIgnoreCase(TipoRol);
+            Optional<RolesDTO> rolBuscado = rolService.findByNombreAproximateIgnoreCase(TipoRol);
 
             if (rolBuscado.isEmpty()) {
-                rol = new Roles();
+                rol = new RolesDTO();
                 rol.setNombre(TipoRol);
                 rol = rolService.create(rol);
 
@@ -54,12 +54,12 @@ public class DataLoader implements ApplicationRunner {
                 rol = rolBuscado.get();
             }
 
-            Usuarios usuario = new Usuarios();
+            UsuariosDTO usuario = new UsuariosDTO();
             usuario.setNombreCompleto("Usuario ADMIN");
             usuario.setCorreo("@@@@");
             usuario.setCedula(cedula);
             usuario.setId(Long.MIN_VALUE);
-            usuario.setEmpleado(usuario);
+//            usuario.setEmpleado(usuario);
             usuario.setContrasenaEncriptada(contrasena);
             usuario.setRoles(rol);
             usuario = usuarioService.create(usuario);
@@ -68,12 +68,11 @@ public class DataLoader implements ApplicationRunner {
         } else {
             System.out.println("Se encontro el Usuario");
         }
-
     }
 
     private void createPermisos() {
         for (Permisos permiso : Permisos.values()) {
-            Roles nuevorol = new Roles();
+            RolesDTO nuevorol = new RolesDTO();
             nuevorol.setNombre(nuevorol.getNombre());
             nuevorol = rolService.create(nuevorol);
         }
