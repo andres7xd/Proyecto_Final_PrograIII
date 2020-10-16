@@ -2,25 +2,25 @@ package org.una.tramites_aeropuerto.controllers;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import java.util.List;
 import java.util.Optional;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.una.tramites_aeropuerto.dto.NotificacionesDTO;
-import org.una.tramites_aeropuerto.dto.UsuariosDTO;
-import org.una.tramites_aeropuerto.entities.Notificaciones;
 import org.una.tramites_aeropuerto.services.INotificacionesService;
-import org.una.tramites_aeropuerto.utils.MapperUtils;
 
 
 /*
@@ -38,18 +38,15 @@ import org.una.tramites_aeropuerto.utils.MapperUtils;
 @Api(tags = {"Notificaciones"})
 public class NotificacionesController {
     
+    final String MENSAJE_VERIFICAR_INFORMACION = "Debe verifiar el formato y la información de su solicitud con el formato esperado";
+    
     @Autowired
     private INotificacionesService notificacionesService;
     
      ResponseEntity<?> findAll() {
-        try {
-            Optional<List<Notificaciones>> result = notificacionesService.findAll();
-            if (result.isPresent()) {
-                List<NotificacionesDTO> notificacionesDTO = MapperUtils.DtoListFromEntityList(result.get(), NotificacionesDTO.class);
-                return new ResponseEntity<>(notificacionesDTO, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
+       try {
+            return new ResponseEntity<>(notificacionesService.findAll(), HttpStatus.OK);
+
         } catch (Exception e) {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -57,70 +54,69 @@ public class NotificacionesController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
-        try {
-
-            Optional<Notificaciones> usuarioFound = notificacionesService.findById(id);
-            if (usuarioFound.isPresent()) {
-                NotificacionesDTO notificacionesDTO = MapperUtils.DtoFromEntity(usuarioFound.get(), NotificacionesDTO.class);
-                return new ResponseEntity<>(notificacionesDTO, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
+       try {
+            return new ResponseEntity(notificacionesService.findById(id), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     
-    @ResponseStatus(HttpStatus.OK)
     @PostMapping("/")
     @ResponseBody
     @ApiOperation(value = "Creacion de Notificaciones:", response = NotificacionesDTO.class, tags = "Notificaciones")
-    public ResponseEntity<?> create(@RequestBody Notificaciones notificaciones) {
-        try {
-            Notificaciones usuarioCreated = notificacionesService.create(notificaciones);
-            NotificacionesDTO notificacionesDto = MapperUtils.DtoFromEntity(usuarioCreated, NotificacionesDTO.class);
-            return new ResponseEntity<>(notificacionesDto, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+     public ResponseEntity<?> create(@Valid @RequestBody NotificacionesDTO notificacionesDTO, BindingResult bindingResult) {
+        if (!bindingResult.hasErrors()) {
+            try {
+                return new ResponseEntity(notificacionesService.create(notificacionesDTO), HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            return new ResponseEntity(MENSAJE_VERIFICAR_INFORMACION, HttpStatus.BAD_REQUEST);
         }
     }
 
+     
     @PutMapping("/{id}")
     @ResponseBody
-    @ApiOperation(value = "Actualizacion de Notificaciones:", response = UsuariosDTO.class, tags = "Notificaciones")
-    public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @RequestBody Notificaciones usuarioModified) {
-        try {
-            Optional<Notificaciones> notificacionesUpdated = notificacionesService.update(usuarioModified, id);
-            if (notificacionesUpdated.isPresent()) {
-                NotificacionesDTO notificacionesDto = MapperUtils.DtoFromEntity(notificacionesUpdated.get(), NotificacionesDTO.class);
-                return new ResponseEntity<>(notificacionesDto, HttpStatus.OK);
-
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
+    @ApiOperation(value = "Actualizacion de Notificaciones:", response = NotificacionesDTO.class, tags = "Notificaciones")
+    public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @Valid @RequestBody NotificacionesDTO notificacionesDTO, BindingResult bindingResult) {
+        if (!bindingResult.hasErrors()) {
+            try {
+                Optional<NotificacionesDTO> notificacionesUpdated = notificacionesService.update(notificacionesDTO, id);
+                if (notificacionesUpdated.isPresent()) {
+                    return new ResponseEntity(notificacionesUpdated, HttpStatus.OK);
+                } else {
+                    return new ResponseEntity(HttpStatus.NOT_FOUND);
+                }
+            } catch (Exception e) {
+                return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
             }
-        } catch (Exception e) {
-            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        } else {
+            return new ResponseEntity(MENSAJE_VERIFICAR_INFORMACION, HttpStatus.BAD_REQUEST);
         }
     }
     
     
-    @GetMapping("/emisor/{emisor}") 
-    public ResponseEntity<?> findByEmisor(@PathVariable(value = "emisor")String emisor) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
         try {
-
-            Optional<Notificaciones> emisorFound = notificacionesService.findByEmisor(emisor);
-            if (emisorFound.isPresent()) {
-                NotificacionesDTO notificacionesDto = MapperUtils.DtoFromEntity(emisorFound.get(), NotificacionesDTO.class);
-                return new ResponseEntity<>(notificacionesDto, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
+            notificacionesService.delete(id);
+            return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
-    
-  
+
+    @DeleteMapping("/")
+    @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
+    public ResponseEntity<?> deleteAll() {
+        try {
+            notificacionesService.deleteAll();
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

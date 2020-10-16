@@ -7,26 +7,24 @@ package org.una.tramites_aeropuerto.services;
 
 import java.util.List;
 import java.util.Optional;
-import org.una.tramites_aeropuerto.entities.Imagenes;
+import org.una.tramites_aeropuerto.dto.ImagenesDTO;
 
 /**
  *
  * @author andre
  */
 public interface IImagenesService {
-    public Optional<List<Imagenes>> findAll();
 
-    public Optional<Imagenes> findById(Long id);
+        public Optional<List<ImagenesDTO>> findAll();
 
-    public Imagenes create(Imagenes imagenes);
+    public Optional<ImagenesDTO> findById(Long id);
 
-    public Optional<Imagenes> update(Imagenes imagenes, Long id);
+    public ImagenesDTO create(ImagenesDTO imagenesDTO);
 
-    public Optional<List<Imagenes>> findByNotificacionesId(Long id);
+    public Optional<ImagenesDTO> update(ImagenesDTO imagenesDTO, Long id);
     
     public void delete(Long id);
 
     public void deleteAll();
-   
 
 }

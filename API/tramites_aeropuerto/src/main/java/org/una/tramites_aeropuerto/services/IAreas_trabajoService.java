@@ -7,7 +7,7 @@ package org.una.tramites_aeropuerto.services;
 
 import java.util.List;
 import java.util.Optional;
-import org.una.tramites_aeropuerto.entities.Areas_trabajo;
+import org.una.tramites_aeropuerto.dto.Areas_trabajoDTO;
 
 /**
  *
@@ -15,17 +15,15 @@ import org.una.tramites_aeropuerto.entities.Areas_trabajo;
  */
 public interface IAreas_trabajoService {
     
-    public Optional<List<Areas_trabajo>> findAll();
+   public Optional<List<Areas_trabajoDTO>> findAll();
     
-    public Optional<Areas_trabajo> findById(Long id);
+    public Optional<Areas_trabajoDTO> findById(Long id);
     
-    public Areas_trabajo create(Areas_trabajo areas_trabajo);
+    public Areas_trabajoDTO create(Areas_trabajoDTO areas_trabajoDTO);
 
-    public Optional<Areas_trabajo> update(Areas_trabajo areas_trabajo, Long id);
+    public Optional<Areas_trabajoDTO> update(Areas_trabajoDTO areas_trabajoDTO, Long id);
 
     public void delete(Long id);
 
     public void deleteAll();
-    
-    public Optional<List<Areas_trabajo>> findByNombreAproximateIgnoreCase(String nombre);
 }

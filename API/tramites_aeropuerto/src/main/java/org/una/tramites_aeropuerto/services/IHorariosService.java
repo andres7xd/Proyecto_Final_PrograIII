@@ -5,10 +5,9 @@
  */
 package org.una.tramites_aeropuerto.services;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import org.una.tramites_aeropuerto.entities.Horarios;
+import org.una.tramites_aeropuerto.dto.HorariosDTO;
 
 /**
  *
@@ -16,13 +15,13 @@ import org.una.tramites_aeropuerto.entities.Horarios;
  */
 public interface IHorariosService {
 
-    public Optional<List<Horarios>> findAll();
+    public Optional<List<HorariosDTO>> findAll();
 
-    public Optional<Horarios> findById(Long id);
+    public Optional<HorariosDTO> findById(Long id);
 
-    public Horarios create(Horarios horarios);
+    public HorariosDTO create(HorariosDTO horariosDTO);
 
-    public Optional<Horarios> update(Horarios horarios, Long id);
+    public Optional<HorariosDTO> update(HorariosDTO horariosDTO, Long id);
 
     public void delete(Long id);
 

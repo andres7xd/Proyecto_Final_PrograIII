@@ -8,7 +8,7 @@ package org.una.tramites_aeropuerto.services;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import org.una.tramites_aeropuerto.entities.Marcas_horario;
+import org.una.tramites_aeropuerto.dto.Marcas_horarioDTO;
 
 /**
  *
@@ -16,16 +16,22 @@ import org.una.tramites_aeropuerto.entities.Marcas_horario;
  */
 public interface IMarcas_horarioService {
 
-    public Marcas_horario create(Marcas_horario marcaHorario);
+ public Marcas_horarioDTO create(Marcas_horarioDTO marcas_horarioDTO);
 
-    public Optional<List<Marcas_horario>> findAll();
+    public Optional<List<Marcas_horarioDTO>> findAll();
+    
+    public Optional<Marcas_horarioDTO> findById(Long id);
 
-    public Optional<Marcas_horario> update(Marcas_horario marcaHorario, Long id);
+    public Optional<Marcas_horarioDTO> update(Marcas_horarioDTO marcas_horarioDTO, Long id);
 
-    public Optional<List<Marcas_horario>> findByHorarioBetween(Date startDate, Date endDate);
+    public Optional<List<Marcas_horarioDTO>> findByHorarioBetween(Date startDate, Date endDate);
 
-    public Optional<List<Marcas_horario>> findByHora_EntradaBetween(Date startDate, Date endDate);
+    public Optional<List<Marcas_horarioDTO>> findByHora_EntradaBetween(Date startDate, Date endDate);
 
-    public Optional<List<Marcas_horario>> findByHora_SalidaBetween(Date startDate, Date endDate);
+    public Optional<List<Marcas_horarioDTO>> findByHora_SalidaBetween(Date startDate, Date endDate);
+
+    public void delete(Long id);
+
+    public void deleteAll();
 
 }

@@ -5,14 +5,16 @@
  */
 package org.una.tramites_aeropuerto.services;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.una.tramites_aeropuerto.dto.HorariosDTO;
 import org.una.tramites_aeropuerto.entities.Horarios;
 import org.una.tramites_aeropuerto.repositories.IHorariosRepository;
+import org.una.tramites_aeropuerto.utils.Convertir;
+import org.una.tramites_aeropuerto.utils.MapperUtils;
 
 /**
  *
@@ -21,32 +23,36 @@ import org.una.tramites_aeropuerto.repositories.IHorariosRepository;
 @Service
 public class HorariosServiceImplementation implements IHorariosService {
 
-    @Autowired
+   @Autowired
     private IHorariosRepository horariosRepository;
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<List<Horarios>> findAll() {
-        return Optional.ofNullable(horariosRepository.findAll());
+    public Optional<List<HorariosDTO>> findAll() {
+        return (Optional<List<HorariosDTO>>) Convertir.findList(Optional.ofNullable(horariosRepository.findAll()), HorariosDTO.class);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Horarios> findById(Long id) {
-        return horariosRepository.findById(id);
+    public Optional<HorariosDTO> findById(Long id) {
+        return (Optional<HorariosDTO>) Convertir.oneToDto(horariosRepository.findById(id), HorariosDTO.class);
     }
 
     @Override
     @Transactional
-    public Horarios create(Horarios horarios) {
-        return horariosRepository.save(horarios);
+    public HorariosDTO create(HorariosDTO horariosDTO) {
+        Horarios horarios = MapperUtils.EntityFromDto(horariosDTO, Horarios.class);
+        horarios = horariosRepository.save(horarios);
+        return MapperUtils.DtoFromEntity(horarios, HorariosDTO.class);
     }
 
     @Override
     @Transactional
-    public Optional<Horarios> update(Horarios horarios, Long id) {
+    public Optional<HorariosDTO> update(HorariosDTO horariosDTO, Long id) {
         if (horariosRepository.findById(id).isPresent()) {
-            return Optional.ofNullable(horariosRepository.save(horarios));
+            Horarios horarios = MapperUtils.EntityFromDto(horariosDTO, Horarios.class);
+            horarios = horariosRepository.save(horarios);
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(horarios, HorariosDTO.class));
         } else {
             return null;
         }

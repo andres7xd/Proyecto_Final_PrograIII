@@ -10,8 +10,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.una.tramites_aeropuerto.dto.ImagenesDTO;
 import org.una.tramites_aeropuerto.entities.Imagenes;
 import org.una.tramites_aeropuerto.repositories.ImagenesRepository;
+import org.una.tramites_aeropuerto.utils.Convertir;
+import org.una.tramites_aeropuerto.utils.MapperUtils;
 
 
 /**
@@ -22,34 +25,34 @@ import org.una.tramites_aeropuerto.repositories.ImagenesRepository;
 public class ImagenesServiceImplementation implements IImagenesService {
     
     
-    @Autowired
+   @Autowired
     private ImagenesRepository imagenesRepository;
-    
-     @Override
-    @Transactional
-    public Imagenes create(Imagenes imagenes) {
-        return imagenesRepository.save(imagenes);
-    }
-
-    
-     @Override
-    @Transactional(readOnly = true)
-    public Optional<Imagenes> findById(Long id) {
-        return imagenesRepository.findById(id);
-      
-    }
-
-   
 
     @Override
     @Transactional
-    public Optional<Imagenes> update(Imagenes imagenes, Long id) {
+    public ImagenesDTO create(ImagenesDTO imagenesDTO) {
+        Imagenes imagenes = MapperUtils.EntityFromDto(imagenesDTO, Imagenes.class);
+        imagenes = imagenesRepository.save(imagenes);
+        return MapperUtils.DtoFromEntity(imagenes, ImagenesDTO.class);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<ImagenesDTO> findById(Long id) {
+
+        return (Optional<ImagenesDTO>) Convertir.oneToDto(imagenesRepository.findById(id), ImagenesDTO.class);
+    }
+
+    @Override
+    @Transactional
+    public Optional<ImagenesDTO> update(ImagenesDTO imagenesDTO, Long id) {
         if (imagenesRepository.findById(id).isPresent()) {
-            return Optional.ofNullable(imagenesRepository.save(imagenes));
+            Imagenes imagenes = MapperUtils.EntityFromDto(imagenesDTO, Imagenes.class);
+            imagenes = imagenesRepository.save(imagenes);
+            return Optional.ofNullable(MapperUtils.DtoFromEntity(imagenes, ImagenesDTO.class));
         } else {
             return null;
         }
-
     }
 
     @Override
@@ -66,15 +69,8 @@ public class ImagenesServiceImplementation implements IImagenesService {
     }
 
     @Override
-    public Optional<List<Imagenes>> findAll() {
-        return Optional.ofNullable(imagenesRepository.findAll());
+    public Optional<List<ImagenesDTO>> findAll() {
+        return (Optional<List<ImagenesDTO>>) Convertir.findList(Optional.ofNullable(imagenesRepository.findAll()), ImagenesDTO.class);
     }
-    
-    @Override
-    @Transactional(readOnly = true)
-    public Optional<List<Imagenes>> findByNotificacionesId(Long id) {
-        return Optional.ofNullable(imagenesRepository.findByNotificacionesId(id));
-    }
-
 
 }

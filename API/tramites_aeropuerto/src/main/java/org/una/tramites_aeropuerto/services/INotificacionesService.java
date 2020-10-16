@@ -7,28 +7,23 @@ package org.una.tramites_aeropuerto.services;
 
 import java.util.List;
 import java.util.Optional;
-import org.una.tramites_aeropuerto.entities.Notificaciones;
+import org.una.tramites_aeropuerto.dto.NotificacionesDTO;
 
 /**
  *
  * @author andre
  */
 public interface INotificacionesService {
-    
-        public Optional<List<Notificaciones>> findAll();
 
-    public Optional<Notificaciones> findById(Long id);
+    public Optional<List<NotificacionesDTO>> findAll();
 
-    public Notificaciones create(Notificaciones notificaciones);
+    public Optional<NotificacionesDTO> findById(Long id);
 
-    public Optional<Notificaciones> update(Notificaciones notificaciones, Long id);
-    
+    public NotificacionesDTO create(NotificacionesDTO notificacionesDTO);
+
+    public Optional<NotificacionesDTO> update(NotificacionesDTO notificacionesDTO, Long id);
+
     public void delete(Long id);
-    
+
     public void deleteAll();
-    
-   public Optional<Notificaciones> findByEmisor(String emisor);
-//    public Optional<List<Notificaciones>> findByEmisorAproximateIgnoreCase(String emisor);
-    
-//    public Optional<List<Notificaciones>> findByemisorAproximate(String emisor);
 }
