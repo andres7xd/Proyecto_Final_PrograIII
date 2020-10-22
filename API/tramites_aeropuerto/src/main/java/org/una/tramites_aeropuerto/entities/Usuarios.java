@@ -88,7 +88,7 @@ public class Usuarios implements Serializable {
 
     @Column
 
-    private byte estado;
+    private boolean estado;
 
     @Column(name = "Fecha_registro", updatable = false)
 
@@ -104,7 +104,7 @@ public class Usuarios implements Serializable {
 
     public void prePersist() {
 
-        estado = 1;
+        estado = true;
         Fecha_registro = new Date();
 
     }

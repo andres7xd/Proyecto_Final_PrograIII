@@ -5,6 +5,7 @@
  */
 package org.una.tramites_aeropuerto.dto;
 
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,16 +13,16 @@ import lombok.ToString;
 
 /**
  *
- * @author rache
+ * @author Luis
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class AuthenticationResponse {
+public class TransaccionesDTO {
 
-    private String token;
-    private String jwt;
-    private UsuariosDTO usuario;
-    private RolesDTO roles;
+    private Long id;
+    private Date Fecha_registro;
+    private Date Fecha_modificacion;
+    private boolean estado;
 }

@@ -6,18 +6,12 @@
 package org.una.tramites_aeropuerto.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,10 +24,11 @@ import lombok.ToString;
 
 /**
  *
- * @author andre
+ * @author Luis
  */
 @Entity
-@Table(name = "notificaciones")
+
+@Table(name = "transacciones")
 
 @Data
 
@@ -42,39 +37,21 @@ import lombok.ToString;
 @NoArgsConstructor
 
 @ToString
-
-public class Notificaciones implements Serializable{
-    
-    @ManyToOne
-    @JoinColumn(name = "Usuario_id")
-    private Usuarios usuarios;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "notificaciones") 
-    private List<Imagenes> imagenes= new ArrayList<>();
+public class Transacciones implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; 
     
-    @Column(name = "fecha_envio")
-    @Setter(AccessLevel.NONE)
+    @Column(name = "Fecha_registro", updatable = false)
     @Temporal(TemporalType.DATE)
-    private Date fecha_envio;
-    
-    @Column(name = "fecha_lectura")
     @Setter(AccessLevel.NONE)
+    private Date Fecha_registro;
     
+    @Column(name = "Fecha_modificacion", updatable = false)
     @Temporal(TemporalType.DATE)
-    private Date fecha_lectura;
-    
-    @Column(name = "mensaje", length = 100)
-    private String mensaje;
-    
-    @Column(name = "emisor", length = 100)
-    private String emisor;
-    
-    @Column(name = "receptor", length = 100)
-    private String receptor;
+    @Setter(AccessLevel.NONE)
+    private Date Fecha_modificacion;
     
     @Column(name = "estado")
     private boolean estado;
@@ -82,11 +59,9 @@ public class Notificaciones implements Serializable{
      public void prePersist() {
 
        estado = true;
-       fecha_envio = new Date();
-       fecha_lectura = new Date();
+       Fecha_registro = new Date();
+       Fecha_modificacion = new Date();
 
     }
-
-    
     
 }

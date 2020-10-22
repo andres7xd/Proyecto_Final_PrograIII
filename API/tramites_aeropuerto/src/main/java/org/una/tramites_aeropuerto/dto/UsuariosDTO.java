@@ -10,8 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.una.tramites_aeropuerto.entities.Usuarios;
-
 /**
  *
  * @author rache
@@ -26,7 +24,7 @@ public class UsuariosDTO {
     private String nombreCompleto;
     private String cedula;
     private String correo;
-    private byte estado;
+    private boolean estado;
     private Date Fecha_Registro;
     private String contrasenaEncriptada;
     private UsuariosDTO empleado;

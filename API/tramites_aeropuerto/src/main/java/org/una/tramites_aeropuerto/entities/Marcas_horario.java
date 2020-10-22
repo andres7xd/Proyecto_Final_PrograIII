@@ -19,8 +19,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -55,33 +53,22 @@ public class Marcas_horario implements Serializable {
     private List<Usuarios_Areas> usuarios_areas = new ArrayList<>();
 
     @Id
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
-
+    
     @Column(name = "Hora_Entrada", updatable = false)
-
     @Temporal(TemporalType.DATE)
-
     @Setter(AccessLevel.NONE)
-
     private Date Hora_Entrada;
 
     @Column(name = "Hora_Salida")
-
     @Temporal(TemporalType.DATE)
-
     @Setter(AccessLevel.NONE)
-
     private Date Hora_Salida;
 
     @Column(name = "Horario", updatable = false)
-
     @Temporal(TemporalType.DATE)
-
     @Setter(AccessLevel.NONE)
-
     private Date Horario;
 
     private static final long serialVersionUID = 1L;
