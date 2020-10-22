@@ -23,5 +23,5 @@ public class Usuarios_AreasDTO {
     private Long id;
     private Areas_trabajoDTO areas_trabajo;
     private UsuariosDTO usuarios;
-    private Marcas_horarioDTO marcas_horario;
+    
 }

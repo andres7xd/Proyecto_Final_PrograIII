@@ -50,7 +50,7 @@ import lombok.ToString;
 public class Marcas_horario implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "marcas_horario")
-    private List<Usuarios_Areas> usuarios_areas = new ArrayList<>();
+    private List<Areas_trabajo> areas_trabajo = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

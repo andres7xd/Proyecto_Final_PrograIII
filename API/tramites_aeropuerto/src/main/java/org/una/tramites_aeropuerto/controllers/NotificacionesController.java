@@ -43,6 +43,9 @@ public class NotificacionesController {
     @Autowired
     private INotificacionesService notificacionesService;
     
+     @GetMapping()
+    @ApiOperation(value = "Obtiene una lista de todos las Notificaciones", response = NotificacionesDTO.class, responseContainer = "List", tags = "Notificaciones")
+    public @ResponseBody
      ResponseEntity<?> findAll() {
        try {
             return new ResponseEntity<>(notificacionesService.findAll(), HttpStatus.OK);
