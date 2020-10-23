@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,9 +41,16 @@ import lombok.ToString;
 @ToString
 public class Transacciones implements Serializable{
     
+    @ManyToOne
+    @JoinColumn(name = "Usuario_id")
+    private Usuarios usuarios;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; 
+    
+    @Column(name = "nombre")
+    private String nombre;
     
     @Column(name = "Fecha_registro", updatable = false)
     @Temporal(TemporalType.DATE)

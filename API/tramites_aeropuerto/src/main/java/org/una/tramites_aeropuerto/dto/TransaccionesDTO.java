@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.una.tramites_aeropuerto.entities.Usuarios;
 
 /**
  *
@@ -22,7 +23,9 @@ import lombok.ToString;
 public class TransaccionesDTO {
 
     private Long id;
+    private String nombre;
     private Date Fecha_registro;
     private Date Fecha_modificacion;
     private boolean estado;
+    private Usuarios usuarios;
 }

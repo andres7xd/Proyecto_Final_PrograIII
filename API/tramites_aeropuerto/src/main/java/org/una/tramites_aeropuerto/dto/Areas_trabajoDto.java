@@ -21,5 +21,4 @@ import lombok.ToString;
 public class Areas_trabajoDTO {
     private Long id;
     private String nombre;
-    private Marcas_horarioDTO marcas_horario;
 }

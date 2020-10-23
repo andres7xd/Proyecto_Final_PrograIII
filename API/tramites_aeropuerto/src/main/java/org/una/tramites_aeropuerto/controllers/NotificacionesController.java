@@ -43,11 +43,11 @@ public class NotificacionesController {
     @Autowired
     private INotificacionesService notificacionesService;
     
-     @GetMapping()
+    @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todos las Notificaciones", response = NotificacionesDTO.class, responseContainer = "List", tags = "Notificaciones")
     public @ResponseBody
-     ResponseEntity<?> findAll() {
-       try {
+    ResponseEntity<?> findAll() {
+        try {
             return new ResponseEntity<>(notificacionesService.findAll(), HttpStatus.OK);
 
         } catch (Exception e) {

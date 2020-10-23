@@ -64,6 +64,9 @@ public class Usuarios implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
     private List<Notificaciones> notificaciones = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
+    private List<Transacciones> transacciones = new ArrayList<>();
+
     @Id
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,7 +80,7 @@ public class Usuarios implements Serializable {
     @Column(name = "Correo", length = 60)
 
     private String correo;
-    
+
     @Column(length = 100, name = "contrasena_Encriptada")
 
     private String contrasenaEncriptada;
