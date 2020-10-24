@@ -44,10 +44,11 @@ public class Horarios implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Dia_Entrada")
-    private int Dia_entrada;
-
-    @Column(name = "Dia_Salida")
-    private int Dia_Salida;
+    @Column(name = "Dia_Entrada", length = 9)
+    private String Dia_Entrada;
+     
+     @Column(name = "Dia_Salida", length = 9)
+    private String Dia_Salida;
+    
 
 }
