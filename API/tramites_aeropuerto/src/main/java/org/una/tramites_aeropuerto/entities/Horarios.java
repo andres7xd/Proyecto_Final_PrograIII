@@ -39,16 +39,15 @@ public class Horarios implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_Usuario_Area")
     private Usuarios_Areas Usuarios_Areas;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Dia_Entrada", length = 9)
+    @Column(name = "Dia_Entrada", length = 20)
     private String Dia_Entrada;
-     
-     @Column(name = "Dia_Salida", length = 9)
+
+    @Column(name = "Dia_Salida", length = 20)
     private String Dia_Salida;
-    
 
 }
