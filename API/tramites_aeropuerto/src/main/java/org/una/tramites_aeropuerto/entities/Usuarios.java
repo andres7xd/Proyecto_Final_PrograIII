@@ -55,50 +55,28 @@ public class Usuarios implements Serializable {
     @JoinColumn(name = "jefe_id")
     private Usuarios empleado;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empleado")
-    private List<Usuarios> empleados = new ArrayList<>();
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
-    private List<Usuarios_Areas> Usuarios_Areas = new ArrayList<>();
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
-    private List<Notificaciones> notificaciones = new ArrayList<>();
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
-    private List<Transacciones> transacciones = new ArrayList<>();
-
     @Id
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
     @Column(name = "NombreCompleto", length = 80)
-
     private String nombreCompleto;
-
+    
     @Column(name = "Correo", length = 60)
-
     private String correo;
 
     @Column(length = 100, name = "contrasena_Encriptada")
-
     private String contrasenaEncriptada;
 
     @Column(length = 25, unique = true)
-
     private String cedula;
-
-    @Column
-
+    
+    @Column(name = "estado")
     private boolean estado;
 
-    @Column(name = "Fecha_registro", updatable = false)
-
+    @Column(name = "Fecha_registro")
     @Temporal(TemporalType.DATE)
-
     @Setter(AccessLevel.NONE)
-
     private Date Fecha_registro;
 
     private static final long serialVersionUID = 1L;

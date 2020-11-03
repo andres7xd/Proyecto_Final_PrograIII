@@ -25,7 +25,7 @@ public class UsuariosDTO {
     private String cedula;
     private String correo;
     private boolean estado;
-    private Date Fecha_Registro;
+    private Date Fecha_registro;
     private String contrasenaEncriptada;
     private UsuariosDTO empleado;
     private RolesDTO roles;

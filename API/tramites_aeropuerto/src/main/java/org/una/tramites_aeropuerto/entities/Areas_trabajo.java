@@ -38,12 +38,6 @@ import lombok.ToString;
 @ToString
 public class Areas_trabajo implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Areas_trabajo")
-    private List<Marcas_horario> marcas_horario = new ArrayList<>();
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "areas_trabajo")
-    private List<Usuarios_Areas> usuarios_areas = new ArrayList<>();
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

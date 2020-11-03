@@ -49,9 +49,6 @@ public class Notificaciones implements Serializable{
     @JoinColumn(name = "Usuario_id")
     private Usuarios usuarios;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "notificaciones") 
-    private List<Imagenes> imagenes= new ArrayList<>();
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

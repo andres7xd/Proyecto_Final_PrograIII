@@ -25,6 +25,7 @@ public class Marcas_horarioDTO {
     private Date Hora_Entrada;
     private Date Hora_Salida;
     private Date Horario;
+    private boolean estado;
     private Areas_trabajoDTO Areas_trabajo;
 
 }

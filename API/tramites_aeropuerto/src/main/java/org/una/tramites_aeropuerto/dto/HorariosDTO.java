@@ -19,9 +19,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class HorariosDTO {
-
     private Long id;
     private String Dia_Entrada;
     private String Dia_Salida;
-    private Usuarios_AreasDTO Usuarios_Areas;
+    private boolean estado;
+    private Areas_trabajoDTO areas_trabajo;
 }

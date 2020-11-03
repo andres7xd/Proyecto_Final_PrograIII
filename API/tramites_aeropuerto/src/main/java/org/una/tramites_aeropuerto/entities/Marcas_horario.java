@@ -36,15 +36,10 @@ import lombok.ToString;
 @Entity
 
 @Table(name = "marcas_horario")
-
 @Data
-
 @AllArgsConstructor
-
 @NoArgsConstructor
-
 @ToString
-
 public class Marcas_horario implements Serializable {
 
     @ManyToOne
@@ -54,7 +49,7 @@ public class Marcas_horario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(name = "Hora_Entrada", updatable = false)
     @Temporal(TemporalType.DATE)
     @Setter(AccessLevel.NONE)
@@ -70,16 +65,18 @@ public class Marcas_horario implements Serializable {
     @Setter(AccessLevel.NONE)
     private Date Horario;
 
+    @Column(name = "estado")
+    private boolean estado;
+
     private static final long serialVersionUID = 1L;
 
     @PrePersist
-
     public void prePersist() {
 
+        estado = true;
         Horario = new Date();
         Hora_Entrada = new Date();
         Hora_Salida = new Date();
-
     }
 
 }
