@@ -24,11 +24,11 @@ public interface IMarcas_horarioService {
 
     public Optional<Marcas_horarioDTO> update(Marcas_horarioDTO marcas_horarioDTO, Long id);
 
-    public Optional<List<Marcas_horarioDTO>> findByHorarioBetween(Date startDate, Date endDate);
-
-    public Optional<List<Marcas_horarioDTO>> findByHora_EntradaBetween(Date startDate, Date endDate);
-
-    public Optional<List<Marcas_horarioDTO>> findByHora_SalidaBetween(Date startDate, Date endDate);
+//    public Optional<List<Marcas_horarioDTO>> findByHorarioBetween(Date startDate, Date endDate);
+//
+//    public Optional<List<Marcas_horarioDTO>> findByHora_EntradaBetween(Date startDate, Date endDate);
+//
+//    public Optional<List<Marcas_horarioDTO>> findByHora_SalidaBetween(Date startDate, Date endDate);
 
     public void delete(Long id);
 

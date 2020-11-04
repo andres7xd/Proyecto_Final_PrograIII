@@ -27,20 +27,20 @@ public class Marcas_horarioServiceImplementation implements IMarcas_horarioServi
    @Autowired
     private IMarcas_horarioRepository marcas_horarioRepository;
 
-    @Override
-    public Optional<List<Marcas_horarioDTO>> findByHorarioBetween(Date startDate, Date endDate) {
-        return (Optional<List<Marcas_horarioDTO>>) Convertir.findList(Optional.ofNullable(marcas_horarioRepository.findByHorarioBetween(startDate, endDate)), Marcas_horarioDTO.class);
-    }
-
-    @Override
-    public Optional<List<Marcas_horarioDTO>> findByHora_EntradaBetween(Date startDate, Date endDate) {
-        return (Optional<List<Marcas_horarioDTO>>) Convertir.findList(Optional.ofNullable(marcas_horarioRepository.findByHora_EntradaBetween(startDate, endDate)), Marcas_horarioDTO.class);
-    }
-
-    @Override
-    public Optional<List<Marcas_horarioDTO>> findByHora_SalidaBetween(Date startDate, Date endDate) {
-        return (Optional<List<Marcas_horarioDTO>>) Convertir.findList(Optional.ofNullable(marcas_horarioRepository.findByHora_SalidaBetween(startDate, endDate)), Marcas_horarioDTO.class);
-    }
+//    @Override
+//    public Optional<List<Marcas_horarioDTO>> findByHorarioBetween(Date startDate, Date endDate) {
+//        return (Optional<List<Marcas_horarioDTO>>) Convertir.findList(Optional.ofNullable(marcas_horarioRepository.findByHorarioBetween(startDate, endDate)), Marcas_horarioDTO.class);
+//    }
+//
+//    @Override
+//    public Optional<List<Marcas_horarioDTO>> findByHora_EntradaBetween(Date startDate, Date endDate) {
+//        return (Optional<List<Marcas_horarioDTO>>) Convertir.findList(Optional.ofNullable(marcas_horarioRepository.findByHora_EntradaBetween(startDate, endDate)), Marcas_horarioDTO.class);
+//    }
+//
+//    @Override
+//    public Optional<List<Marcas_horarioDTO>> findByHora_SalidaBetween(Date startDate, Date endDate) {
+//        return (Optional<List<Marcas_horarioDTO>>) Convertir.findList(Optional.ofNullable(marcas_horarioRepository.findByHora_SalidaBetween(startDate, endDate)), Marcas_horarioDTO.class);
+//    }
 
     @Override
     public Marcas_horarioDTO create(Marcas_horarioDTO marcas_horarioDTO) {

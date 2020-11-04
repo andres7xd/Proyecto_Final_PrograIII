@@ -10,7 +10,7 @@ package org.una.tramites_aeropuerto.entities;
  * @author rache
  */
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Time;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,13 +20,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -50,20 +46,11 @@ public class Marcas_horario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Hora_Entrada", updatable = false)
-    @Temporal(TemporalType.DATE)
-    @Setter(AccessLevel.NONE)
-    private Date Hora_Entrada;
+    @Column(name = "marca_entrada")
+    private Time marca_entrada;
 
-    @Column(name = "Hora_Salida")
-    @Temporal(TemporalType.DATE)
-    @Setter(AccessLevel.NONE)
-    private Date Hora_Salida;
-
-    @Column(name = "Horario", updatable = false)
-    @Temporal(TemporalType.DATE)
-    @Setter(AccessLevel.NONE)
-    private Date Horario;
+    @Column(name = "marca_salida")
+    private Time marca_salida;
 
     @Column(name = "estado")
     private boolean estado;
@@ -74,9 +61,6 @@ public class Marcas_horario implements Serializable {
     public void prePersist() {
 
         estado = true;
-        Horario = new Date();
-        Hora_Entrada = new Date();
-        Hora_Salida = new Date();
     }
 
 }

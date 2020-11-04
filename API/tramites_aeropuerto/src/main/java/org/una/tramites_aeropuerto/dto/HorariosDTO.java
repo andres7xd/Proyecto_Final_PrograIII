@@ -5,6 +5,7 @@
  */
 package org.una.tramites_aeropuerto.dto;
 
+import java.sql.Time;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,5 +24,8 @@ public class HorariosDTO {
     private String Dia_Entrada;
     private String Dia_Salida;
     private boolean estado;
+    private Time hora_entrada;
+    private Time hora_salida;
     private Areas_trabajoDTO areas_trabajo;
+    
 }
