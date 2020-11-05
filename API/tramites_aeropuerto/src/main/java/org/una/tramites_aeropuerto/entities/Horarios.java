@@ -53,21 +53,15 @@ public class Horarios implements Serializable {
     @Column(name = "estado")
     private boolean estado;
 
-    @Basic(optional = false)
+
     @Column(name = "hora_entrada")
     @Temporal(TemporalType.TIME)
     private Date hora_entrada;
 
-    @Basic(optional = false)
+
     @Column(name = "hora_salida")
     @Temporal(TemporalType.TIME)
     private Date hora_salida;
 
-    @PrePersist
-    public void prePersist() {
 
-        hora_entrada = new Date();
-        hora_salida = new Date();
-        estado = true;
-    }
 }
