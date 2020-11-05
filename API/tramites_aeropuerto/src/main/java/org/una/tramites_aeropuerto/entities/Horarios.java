@@ -6,8 +6,8 @@
 package org.una.tramites_aeropuerto.entities;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,11 +19,9 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -31,15 +29,10 @@ import lombok.ToString;
  * @author Luis
  */
 @Entity
-
 @Table(name = "Horarios")
-
 @Data
-
 @AllArgsConstructor
-
 @NoArgsConstructor
-
 @ToString
 public class Horarios implements Serializable {
 
@@ -60,15 +53,21 @@ public class Horarios implements Serializable {
     @Column(name = "estado")
     private boolean estado;
 
+    @Basic(optional = false)
     @Column(name = "hora_entrada")
-    private Time hora_entrada;
+    @Temporal(TemporalType.TIME)
+    private Date hora_entrada;
 
+    @Basic(optional = false)
     @Column(name = "hora_salida")
-    private Time hora_salida;
+    @Temporal(TemporalType.TIME)
+    private Date hora_salida;
 
     @PrePersist
     public void prePersist() {
 
+        hora_entrada = new Date();
+        hora_salida = new Date();
         estado = true;
     }
 }

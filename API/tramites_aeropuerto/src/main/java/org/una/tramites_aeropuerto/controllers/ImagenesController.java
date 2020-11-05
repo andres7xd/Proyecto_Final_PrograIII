@@ -35,12 +35,15 @@ import org.una.tramites_aeropuerto.services.IImagenesService;
 @RequestMapping("/imagenes")
 @Api(tags = {"Imagenes"})
 public class ImagenesController {
-   
+
     final String MENSAJE_VERIFICAR_INFORMACION = "Debe verifiar el formato y la información de su solicitud con el formato esperado";
 
     @Autowired
     private IImagenesService imagenesService;
 
+    @GetMapping()
+    @ApiOperation(value = "Obtiene una lista de todas las imágenes", response = ImagenesDTO.class, responseContainer = "List", tags = "Imagenes")
+    public @ResponseBody
     ResponseEntity<?> findAll() {
         try {
             return new ResponseEntity<>(imagenesService.findAll(), HttpStatus.OK);

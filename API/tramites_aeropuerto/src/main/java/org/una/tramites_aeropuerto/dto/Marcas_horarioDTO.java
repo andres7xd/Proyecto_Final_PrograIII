@@ -23,9 +23,8 @@ import lombok.ToString;
 public class Marcas_horarioDTO {
 
     private Long id;
-    private Time marca_entrada;
-    private Time marca_salida;
+    private Date marca_entrada;
+    private Date marca_salida;
     private boolean estado;
     private Areas_trabajoDTO Areas_trabajo;
-
 }

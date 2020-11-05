@@ -15,14 +15,14 @@ import org.una.tramites_aeropuerto.dto.ImagenesDTO;
  */
 public interface IImagenesService {
 
-        public Optional<List<ImagenesDTO>> findAll();
+    public Optional<List<ImagenesDTO>> findAll();
 
     public Optional<ImagenesDTO> findById(Long id);
 
     public ImagenesDTO create(ImagenesDTO imagenesDTO);
 
     public Optional<ImagenesDTO> update(ImagenesDTO imagenesDTO, Long id);
-    
+
     public void delete(Long id);
 
     public void deleteAll();
