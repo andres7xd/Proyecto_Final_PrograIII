@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package org.una.tramites_aeropuerto.dto;
-
-import java.sql.Time;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;

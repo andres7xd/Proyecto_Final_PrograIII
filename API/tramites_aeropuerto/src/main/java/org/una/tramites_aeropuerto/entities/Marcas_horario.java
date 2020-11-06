@@ -53,7 +53,6 @@ public class Marcas_horario implements Serializable {
     @Temporal(TemporalType.TIME)
     private Date marca_entrada;
 
-    @Basic(optional = false)
     @Column(name = "marca_salida")
     @Temporal(TemporalType.TIME)
     private Date marca_salida;
@@ -66,7 +65,6 @@ public class Marcas_horario implements Serializable {
     @PrePersist
     public void prePersist() {
 
-        marca_entrada = new Date();
         marca_entrada = new Date();
         estado = true;
     }

@@ -76,7 +76,6 @@ public class Usuarios implements Serializable {
 
     @Column(name = "Fecha_registro")
     @Temporal(TemporalType.DATE)
-    @Setter(AccessLevel.NONE)
     private Date Fecha_registro;
 
     private static final long serialVersionUID = 1L;
