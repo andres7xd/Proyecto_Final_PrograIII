@@ -21,8 +21,8 @@ import lombok.ToString;
 @ToString
 public class HorariosDTO {
     private Long id;
-    private String Dia_Entrada;
-    private String Dia_Salida;
+    private String diaEntrada;
+    private String diaSalida;
     private boolean estado;
     private Date hora_entrada;
     private Date hora_salida;

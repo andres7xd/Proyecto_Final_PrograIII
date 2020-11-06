@@ -114,4 +114,22 @@ public class HorariosController {
             return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
+    @GetMapping("/diaEntrada/{diaEntrada}")
+    public ResponseEntity<?> findByDia_EntradaContaining(@PathVariable(value = "diaEntrada") String diaEntrada) {
+        try {
+            return new ResponseEntity(horariosService.findByDiaEntradaContaining(diaEntrada), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    @GetMapping("/diaSalida/{diaSalida}")
+    public ResponseEntity<?> findByDia_SalidaContaining(@PathVariable(value = "diaSalida") String diaSalida) {
+        try {
+            return new ResponseEntity(horariosService.findByDiaSalidaContaining(diaSalida), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

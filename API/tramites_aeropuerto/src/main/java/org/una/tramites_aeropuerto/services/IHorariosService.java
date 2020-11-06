@@ -16,6 +16,10 @@ import org.una.tramites_aeropuerto.dto.HorariosDTO;
 public interface IHorariosService {
 
     public Optional<List<HorariosDTO>> findAll();
+    
+    public Optional<HorariosDTO> findByDiaEntradaContaining(String diaEntrada);
+    
+    public Optional<HorariosDTO> findByDiaSalidaContaining(String diaSalida);
 
     public Optional<HorariosDTO> findById(Long id);
 

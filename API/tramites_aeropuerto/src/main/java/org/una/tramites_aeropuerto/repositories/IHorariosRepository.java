@@ -5,6 +5,7 @@
  */
 package org.una.tramites_aeropuerto.repositories;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.una.tramites_aeropuerto.entities.Horarios;
 
@@ -14,4 +15,7 @@ import org.una.tramites_aeropuerto.entities.Horarios;
  */
 public interface IHorariosRepository extends JpaRepository<Horarios, Long>{
     
+     public List<Horarios> findByDiaEntradaContaining(String diaEntrada);
+     
+     public List<Horarios> findByDiaSalidaContaining(String diaSalida);
 }

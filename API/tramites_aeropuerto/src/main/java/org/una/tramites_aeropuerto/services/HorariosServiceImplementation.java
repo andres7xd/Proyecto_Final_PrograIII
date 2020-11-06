@@ -70,4 +70,12 @@ public class HorariosServiceImplementation implements IHorariosService {
     public void deleteAll() {
         horariosRepository.deleteAll();
     }
+    
+    public Optional<HorariosDTO> findByDiaEntradaContaining(String diaEntrada) {
+        return (Optional<HorariosDTO>) Convertir.oneToDto(Optional.ofNullable(horariosRepository.findByDiaEntradaContaining(diaEntrada)), HorariosDTO.class);
+    }
+    
+    public Optional<HorariosDTO> findByDiaSalidaContaining(String diaSalida) {
+        return (Optional<HorariosDTO>) Convertir.oneToDto(Optional.ofNullable(horariosRepository.findByDiaEntradaContaining(diaSalida)), HorariosDTO.class);
+    }
 }
