@@ -17,9 +17,9 @@ public interface IHorariosService {
 
     public Optional<List<HorariosDTO>> findAll();
     
-    public Optional<HorariosDTO> findByDiaEntradaContaining(String diaEntrada);
+    public Optional<List<HorariosDTO>> findByDiaEntrada(String diaEntrada);
     
-    public Optional<HorariosDTO> findByDiaSalidaContaining(String diaSalida);
+    public Optional<List<HorariosDTO>> findByDiaSalida(String diaSalida);
 
     public Optional<HorariosDTO> findById(Long id);
 

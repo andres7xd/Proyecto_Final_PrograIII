@@ -15,7 +15,7 @@ import org.una.tramites_aeropuerto.entities.Horarios;
  */
 public interface IHorariosRepository extends JpaRepository<Horarios, Long>{
     
-     public List<Horarios> findByDiaEntradaContaining(String diaEntrada);
+     public List<Horarios> findByDiaEntrada(String diaEntrada);
      
-     public List<Horarios> findByDiaSalidaContaining(String diaSalida);
+     public List<Horarios> findByDiaSalida(String diaSalida);
 }

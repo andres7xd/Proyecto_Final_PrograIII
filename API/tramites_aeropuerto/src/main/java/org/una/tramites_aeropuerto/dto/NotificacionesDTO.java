@@ -24,7 +24,7 @@ public class NotificacionesDTO {
 
     private Long id;
     private Date fecha_envio;
-    private Date fecha_lectura;
+    private Date fecha_entrega;
     private String mensaje;
     private String emisor;
     private String receptor;

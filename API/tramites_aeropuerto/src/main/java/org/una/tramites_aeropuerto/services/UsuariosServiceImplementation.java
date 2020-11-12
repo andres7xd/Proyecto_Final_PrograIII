@@ -9,13 +9,10 @@ import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.una.tramites_aeropuerto.dto.UsuariosDTO;
-
 import org.una.tramites_aeropuerto.entities.Usuarios;
-import org.una.tramites_aeropuerto.jwt.JwtProvider;
 import org.una.tramites_aeropuerto.repositories.IUsuariosRepository;
 import org.una.tramites_aeropuerto.utils.Convertir;
 import org.una.tramites_aeropuerto.utils.MapperUtils;

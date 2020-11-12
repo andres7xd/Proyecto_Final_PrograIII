@@ -35,7 +35,7 @@ import org.una.tramites_aeropuerto.services.IUsuariosService;
 @RequestMapping("/usuarios")
 @Api(tags = {"Usuarios"})
 public class UsuariosController {
-    
+
     final String MENSAJE_VERIFICAR_INFORMACION = "Debe verifiar el formato y la información de su solicitud con el formato esperado";
 
     @Autowired
@@ -55,7 +55,7 @@ public class UsuariosController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
-         try {
+        try {
             return new ResponseEntity(usuarioService.findById(id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -82,7 +82,7 @@ public class UsuariosController {
 
     @GetMapping("/correo/{correo}")
     public ResponseEntity<?> findByCorreoAproximateIgnoreCase(@PathVariable(value = "correo") String correo) {
-     try {
+        try {
             return new ResponseEntity(usuarioService.findByCorreoAproximate(correo), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -123,9 +123,9 @@ public class UsuariosController {
             return new ResponseEntity(MENSAJE_VERIFICAR_INFORMACION, HttpStatus.BAD_REQUEST);
         }
     }
-    
+
     @DeleteMapping("/{id}")
-    @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+    @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
     public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
         try {
             usuarioService.delete(id);
@@ -136,7 +136,7 @@ public class UsuariosController {
     }
 
     @DeleteMapping("/")
-    @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+    @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
     public ResponseEntity<?> deleteAll() {
         try {
             usuarioService.deleteAll();

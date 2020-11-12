@@ -81,12 +81,10 @@ public class Usuarios implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @PrePersist
-
     public void prePersist() {
 
         estado = true;
         Fecha_registro = new Date();
-
     }
 
 }

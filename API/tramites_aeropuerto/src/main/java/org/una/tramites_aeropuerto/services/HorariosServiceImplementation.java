@@ -71,11 +71,11 @@ public class HorariosServiceImplementation implements IHorariosService {
         horariosRepository.deleteAll();
     }
     
-    public Optional<HorariosDTO> findByDiaEntradaContaining(String diaEntrada) {
-        return (Optional<HorariosDTO>) Convertir.oneToDto(Optional.ofNullable(horariosRepository.findByDiaEntradaContaining(diaEntrada)), HorariosDTO.class);
+    public Optional<List<HorariosDTO>> findByDiaEntrada(String diaEntrada) {
+        return (Optional<List<HorariosDTO>>) Convertir.findList(Optional.ofNullable(horariosRepository.findByDiaEntrada(diaEntrada)), HorariosDTO.class);
     }
     
-    public Optional<HorariosDTO> findByDiaSalidaContaining(String diaSalida) {
-        return (Optional<HorariosDTO>) Convertir.oneToDto(Optional.ofNullable(horariosRepository.findByDiaEntradaContaining(diaSalida)), HorariosDTO.class);
+    public Optional<List<HorariosDTO>> findByDiaSalida(String diaSalida) {
+        return (Optional<List<HorariosDTO>>) Convertir.findList(Optional.ofNullable(horariosRepository.findByDiaSalida(diaSalida)), HorariosDTO.class);
     }
 }
