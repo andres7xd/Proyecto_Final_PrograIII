@@ -41,8 +41,8 @@ import lombok.ToString;
 public class Marcas_horario implements Serializable {
 
     @ManyToOne
-    @JoinColumn(name = "id_area_trabajo")
-    private Areas_trabajo Areas_trabajo;
+    @JoinColumn(name = "id_usuarios_areas")
+    private Usuarios_Areas usuariosAreas;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
