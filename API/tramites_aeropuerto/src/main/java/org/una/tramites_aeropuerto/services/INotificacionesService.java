@@ -26,4 +26,6 @@ public interface INotificacionesService {
     public void delete(Long id);
 
     public void deleteAll();
+    
+    public Optional<List<NotificacionesDTO>> findByEmisorAproximate(String emisor);
 }

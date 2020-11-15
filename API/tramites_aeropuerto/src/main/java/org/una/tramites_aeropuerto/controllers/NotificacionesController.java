@@ -28,7 +28,6 @@ import org.una.tramites_aeropuerto.services.INotificacionesService;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author andre
@@ -37,12 +36,12 @@ import org.una.tramites_aeropuerto.services.INotificacionesService;
 @RequestMapping("/notificaciones")
 @Api(tags = {"Notificaciones"})
 public class NotificacionesController {
-    
+
     final String MENSAJE_VERIFICAR_INFORMACION = "Debe verifiar el formato y la información de su solicitud con el formato esperado";
-    
+
     @Autowired
     private INotificacionesService notificacionesService;
-    
+
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todos las Notificaciones", response = NotificacionesDTO.class, responseContainer = "List", tags = "Notificaciones")
     public @ResponseBody
@@ -57,18 +56,17 @@ public class NotificacionesController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
-       try {
+        try {
             return new ResponseEntity(notificacionesService.findById(id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    
     @PostMapping("/")
     @ResponseBody
     @ApiOperation(value = "Creacion de Notificaciones:", response = NotificacionesDTO.class, tags = "Notificaciones")
-     public ResponseEntity<?> create(@Valid @RequestBody NotificacionesDTO notificacionesDTO, BindingResult bindingResult) {
+    public ResponseEntity<?> create(@Valid @RequestBody NotificacionesDTO notificacionesDTO, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             try {
                 return new ResponseEntity(notificacionesService.create(notificacionesDTO), HttpStatus.CREATED);
@@ -80,7 +78,6 @@ public class NotificacionesController {
         }
     }
 
-     
     @PutMapping("/{id}")
     @ResponseBody
     @ApiOperation(value = "Actualizacion de Notificaciones:", response = NotificacionesDTO.class, tags = "Notificaciones")
@@ -100,8 +97,7 @@ public class NotificacionesController {
             return new ResponseEntity(MENSAJE_VERIFICAR_INFORMACION, HttpStatus.BAD_REQUEST);
         }
     }
-    
-    
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
         try {
@@ -118,6 +114,15 @@ public class NotificacionesController {
         try {
             notificacionesService.deleteAll();
             return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/emisor/{emisor}")
+    public ResponseEntity<?> findByEmisorAproximateIgnoreCase(@PathVariable(value = "emisor") String emisor) {
+        try {
+            return new ResponseEntity(notificacionesService.findByEmisorAproximate(emisor), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }

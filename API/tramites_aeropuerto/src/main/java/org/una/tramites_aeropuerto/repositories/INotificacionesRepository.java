@@ -14,7 +14,6 @@ import org.una.tramites_aeropuerto.entities.Notificaciones;
  * @author andre
  */
 public interface INotificacionesRepository extends JpaRepository<Notificaciones, Long> {
-   
-            public Notificaciones findByEmisor(String emisor);
 
+    public List<Notificaciones> findByEmisorContaining(String emisor);
 }

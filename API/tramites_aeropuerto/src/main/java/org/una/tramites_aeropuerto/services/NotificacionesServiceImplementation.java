@@ -70,4 +70,9 @@ public class NotificacionesServiceImplementation implements INotificacionesServi
     public Optional<List<NotificacionesDTO>> findAll() {
         return (Optional<List<NotificacionesDTO>>) Convertir.findList(Optional.ofNullable(notificacionesRepository.findAll()), NotificacionesDTO.class);
     }
+    
+    @Override
+    public Optional<List<NotificacionesDTO>> findByEmisorAproximate(String emisor) {
+        return (Optional<List<NotificacionesDTO>>) Convertir.findList(Optional.ofNullable(notificacionesRepository.findByEmisorContaining(emisor)), NotificacionesDTO.class);
+    }
 }
