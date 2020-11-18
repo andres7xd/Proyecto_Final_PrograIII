@@ -40,8 +40,8 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
 
-             ConeccionReporte coneccionreporte = new ConeccionReporte();
-                coneccionreporte.Connecion("mm");
+          //   ConeccionReporte coneccionreporte = new ConeccionReporte();
+          //      coneccionreporte.Connecion("mm");
                 
         if (usuarioService.findByCedula(cedula).isEmpty()) {
 
