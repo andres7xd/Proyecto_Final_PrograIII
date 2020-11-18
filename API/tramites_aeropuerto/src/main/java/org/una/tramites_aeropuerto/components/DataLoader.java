@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.una.tramites_aeropuerto.dto.RolesDTO;
 import org.una.tramites_aeropuerto.dto.UsuariosDTO;
 import org.una.tramites_aeropuerto.loaders.Permisos;
+import org.una.tramites_aeropuerto.reports.ConeccionReporte;
 import org.una.tramites_aeropuerto.services.IRolesService;
 import org.una.tramites_aeropuerto.services.IUsuariosService;
 
@@ -39,6 +40,9 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
 
+             ConeccionReporte coneccionreporte = new ConeccionReporte();
+                coneccionreporte.Connecion("mm");
+                
         if (usuarioService.findByCedula(cedula).isEmpty()) {
 
             RolesDTO rol;
