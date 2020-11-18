@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="feb0b445-7a0a-4133-ad3a-c95c577a370c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -10,6 +13,9 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
+	<parameter name="Parametro" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString language="SQL">
 		<![CDATA[SELECT * FROM notificaciones;]]>
 	</queryString>
@@ -42,10 +48,6 @@
 	</background>
 	<title>
 		<band height="132" splitType="Stretch">
-			<image>
-				<reportElement x="456" y="0" width="99" height="132" uuid="c151c0de-687e-4b82-bb45-d0a30c3295e8"/>
-				<imageExpression><![CDATA["cherry.jpg"]]></imageExpression>
-			</image>
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#000000" uuid="969dc34f-b62b-488d-a84b-b51ccccd255f"/>
 				<staticText>
@@ -130,7 +132,7 @@
 				<text><![CDATA[receptor]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="483" y="7" width="69" height="18" forecolor="#000000" uuid="9d3fdf93-3d7e-4a91-8f5e-ebc302864bfc"/>
+				<reportElement style="Column header" x="486" y="7" width="66" height="18" forecolor="#000000" uuid="9d3fdf93-3d7e-4a91-8f5e-ebc302864bfc"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
