@@ -57,10 +57,7 @@ public class Transacciones implements Serializable{
     @Setter(AccessLevel.NONE)
     private Date Fecha_registro;
     
-    @Column(name = "Fecha_modificacion", updatable = false)
-    @Temporal(TemporalType.DATE)
-    @Setter(AccessLevel.NONE)
-    private Date Fecha_modificacion;
+  
     
     @Column(name = "estado")
     private boolean estado;
@@ -69,7 +66,7 @@ public class Transacciones implements Serializable{
 
        estado = true;
        Fecha_registro = new Date();
-       Fecha_modificacion = new Date();
+      
 
     }
     
