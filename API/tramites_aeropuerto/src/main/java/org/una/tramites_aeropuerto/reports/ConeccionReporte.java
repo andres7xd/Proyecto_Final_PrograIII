@@ -44,7 +44,7 @@ public class ConeccionReporte {
             HashMap map = new HashMap();//sustituir por null en 46
             map.put("Parametro", new Date());
 
-            JasperReport reporte2 = (JasperReport) JRLoader.loadObject(new File(miDir.getCanonicalPath() + "\\src\\main\\java\\org\\una\\tramites_aeropuerto\\reports\\report1.jasper"));
+            JasperReport reporte2 = (JasperReport) JRLoader.loadObject(new File(miDir.getCanonicalPath() + "\\src\\main\\java\\org\\una\\tramites_aeropuerto\\reports\\ReporteNotificaciones.jasper"));
             JasperPrint jasperPrint = JasperFillManager.fillReport(reporte2, null, conexion);
             byte[] byteJaspearReport;
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -53,13 +53,7 @@ public class ConeccionReporte {
             byteJaspearReport = baos.toByteArray();
             jasperString = Base64.getEncoder().encodeToString(byteJaspearReport);
 
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ConeccionReporte.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ConeccionReporte.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ConeccionReporte.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (JRException ex) {
+        } catch (ClassNotFoundException | SQLException | IOException | JRException ex) {
             Logger.getLogger(ConeccionReporte.class.getName()).log(Level.SEVERE, null, ex);
         }
 
