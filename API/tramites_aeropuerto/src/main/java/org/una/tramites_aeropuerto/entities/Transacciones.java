@@ -54,7 +54,6 @@ public class Transacciones implements Serializable{
     
     @Column(name = "Fecha_registro", updatable = false)
     @Temporal(TemporalType.DATE)
-    @Setter(AccessLevel.NONE)
     private Date Fecha_registro;
     
   
