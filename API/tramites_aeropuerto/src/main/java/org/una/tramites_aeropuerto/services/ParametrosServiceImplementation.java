@@ -8,6 +8,7 @@ package org.una.tramites_aeropuerto.services;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.una.tramites_aeropuerto.dto.ParametrosDTO;
 import org.una.tramites_aeropuerto.entities.Parametros;
 import org.una.tramites_aeropuerto.repositories.IParametrosRepository;
@@ -18,6 +19,7 @@ import org.una.tramites_aeropuerto.utils.MapperUtils;
  *
  * @author Luis
  */
+@Service
 public class ParametrosServiceImplementation implements IParametrosService{
  
      @Autowired

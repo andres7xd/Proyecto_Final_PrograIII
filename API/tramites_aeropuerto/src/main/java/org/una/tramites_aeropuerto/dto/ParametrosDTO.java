@@ -22,5 +22,6 @@ public class ParametrosDTO {
     
     private Long id;
     private int vigenciaEnMinutos;
-    private String nombre;  
+    private String nombre;
+    private boolean estado;
 }

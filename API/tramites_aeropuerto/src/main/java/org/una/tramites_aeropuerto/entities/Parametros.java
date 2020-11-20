@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -43,4 +44,13 @@ public class Parametros {
     
     @Column(name = "vigenciaEnMinutos")
     private int vigenciaEnMinutos; 
+    
+    @Column(name = "estado")
+    private boolean estado;
+
+    @PrePersist
+    public void prePersist() {
+
+        estado = true;
+    }
 }
