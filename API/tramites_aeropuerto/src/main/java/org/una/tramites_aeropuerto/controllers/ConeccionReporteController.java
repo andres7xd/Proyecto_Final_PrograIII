@@ -23,19 +23,15 @@ import org.una.tramites_aeropuerto.reports.ConeccionReporte;
  */
 @RestController
 @RequestMapping("/reportes")
-//@Api(tags = {"Horarios"})
 
 public class ConeccionReporteController {
 
     @Autowired
     private ConeccionReporte coneccionReporte;
 
-    
     @GetMapping("/{nombreReporte}")
     @ResponseBody
-    
-    //   @ApiOperation(value = "Obtiene una lista de todos los horarios", response = HorariosDTO.class)
-  
+
     ResponseEntity<?> findReporte(@PathVariable(value = "nombreReporte") String nombre) {
         try {
             return new ResponseEntity<>(coneccionReporte.Connecion(nombre), HttpStatus.OK);
