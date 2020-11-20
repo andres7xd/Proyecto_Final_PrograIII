@@ -5,7 +5,6 @@
  */
 package org.una.tramites_aeropuerto.entities;
 
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,11 +18,12 @@ import lombok.ToString;
 
 /**
  *
- * @author rache
+ * @author Luis
  */
+
 @Entity
 
-@Table(name = "roles")
+@Table(name = "parametros")
 
 @Data
 
@@ -32,17 +32,15 @@ import lombok.ToString;
 @NoArgsConstructor
 
 @ToString
-
-public class Roles implements Serializable {
-
+public class Parametros {
+    
     @Id
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
-    @Column(name = "Nombre", length = 24)
-
+    @Column(name = "nombre", length = 80)
     private String nombre;
-
+    
+    @Column(name = "vigenciaEnMinutos")
+    private int vigenciaEnMinutos; 
 }
